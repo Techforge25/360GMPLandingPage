@@ -1,172 +1,111 @@
 import React from "react";
 import Image from "next/image";
 
-// Mockup Paths
-const mockupImages = {
-    escrowModel: "/images/escrow.png",
-    sellerShipment: "/images/escrow2.png",
-};
-
-// Gradient tag styling
-const getTagStyle = (): React.CSSProperties => ({
-    background: 'linear-gradient(135deg, rgba(147, 112, 219, 0.85) 0%, rgba(138, 180, 248, 0.85) 100%)',
-    backdropFilter: 'blur(10px)',
-    WebkitBackdropFilter: 'blur(10px)',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    border: '1px solid rgba(255, 255, 255, 0.3)',
-});
-
-// Arrow SVG Component
-const Arrow: React.FC<{ fromTag: 'user' | 'business' }> = ({ fromTag }) => {
-    if (fromTag === 'user') {
-        // Arrow from User tag to top-right image
-        return (
-            <svg
-                className="absolute top-[15%] left-[25%] w-[200px] h-[100px] pointer-events-none z-25 hidden lg:block"
-                viewBox="0 0 200 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M 10 50 Q 100 20, 190 45"
-                    stroke="rgba(147, 112, 219, 0.6)"
-                    strokeWidth="2"
-                    fill="none"
-                    markerEnd="url(#arrowhead)"
-                />
-                <defs>
-                    <marker
-                        id="arrowhead"
-                        markerWidth="10"
-                        markerHeight="10"
-                        refX="9"
-                        refY="3"
-                        orient="auto"
-                    >
-                        <polygon points="0 0, 10 3, 0 6" fill="rgba(147, 112, 219, 0.6)" />
-                    </marker>
-                </defs>
-            </svg>
-        );
-    } else {
-        // Arrow from Business tag to bottom-left image
-        return (
-            <svg
-                className="absolute bottom-[30%] right-[25%] w-[200px] h-[100px] pointer-events-none z-25 hidden lg:block"
-                viewBox="0 0 200 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M 190 50 Q 100 80, 10 55"
-                    stroke="rgba(138, 180, 248, 0.6)"
-                    strokeWidth="2"
-                    fill="none"
-                    markerEnd="url(#arrowhead2)"
-                />
-                <defs>
-                    <marker
-                        id="arrowhead2"
-                        markerWidth="10"
-                        markerHeight="10"
-                        refX="0"
-                        refY="3"
-                        orient="auto"
-                    >
-                        <polygon points="10 0, 0 3, 10 6" fill="rgba(138, 180, 248, 0.6)" />
-                    </marker>
-                </defs>
-            </svg>
-        );
-    }
-};
-
 export const PartnershipSection: React.FC = () => {
     return (
-        <section
-            className="relative w-full overflow-hidden py-24 bg-gradient-to-b from-white via-purple-50/20 to-blue-50/20"
-            aria-label="Partnership section"
-        >
-            {/* Header Content */}
-            <header className="max-w-4xl mx-auto px-[72px] text-center mb-20">
-                <h1 className="manrope text-4xl md:text-5xl font-bold text-[#202939] tracking-normal leading-tight mb-6">
-                    In partnership with the top fintech companies
-                </h1>
-                <p className="text-[#697586] text-base md:text-lg mx-auto max-w-2xl leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.
-                </p>
-            </header>
+        <section className="relative w-full overflow-hidden py-24 bg-[#F8F9FF]">
+            {/* Background Gradient/Glow */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-100/50 rounded-full blur-[80px] mix-blend-multiply"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-purple-100/50 rounded-full blur-[80px] mix-blend-multiply"></div>
+                <div className="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-pink-100/30 rounded-full blur-[60px] mix-blend-multiply"></div>
+            </div>
 
-            {/* Full Width Mockup Container with 72px gaps */}
-            <div className="relative w-full px-[72px]">
-                <div className="relative w-full max-w-7xl mx-auto min-h-[600px] lg:min-h-[750px]">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <div className="text-center max-w-4xl mx-auto mb-20">
+                    <h2 className="text-[#1a0737] text-4xl md:text-[52px] font-bold mb-6 tracking-tight leading-[1.15]">
+                        Secure Escrow Payments
+                    </h2>
+                    <p className="text-[#52525b] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-normal">
+                        Protect your transactions with milestone-based escrow. Funds are released only when work is approved, ensuring safety for both businesses and professionals.
+                    </p>
+                </div>
 
-                    {/* Background Gradient Blobs - Full Width */}
-                    <div className="absolute inset-0 overflow-visible pointer-events-none -mx-[72px]" aria-hidden="true">
-                        {/* Top Right Purple Blob */}
-                        <div className="absolute top-[5%] right-[8%] w-[450px] h-[450px] rounded-full bg-purple-400/35 blur-[130px]"></div>
+                {/* Main Content Area */}
+                <div className="relative w-full min-h-[500px] md:min-h-[850px] mt-10">
 
-                        {/* Bottom Left Blue Blob */}
-                        <div className="absolute bottom-[5%] left-[8%] w-[500px] h-[500px] rounded-full bg-blue-400/35 blur-[130px]"></div>
-
-                        {/* Center Mix */}
-                        <div className="absolute top-[35%] left-[35%] w-[400px] h-[400px] rounded-full bg-indigo-400/25 blur-[110px]"></div>
+                    {/* 1. Back Image (Top Right - Desktop View) */}
+                    <div className="absolute top-0 right-[-5%] md:right-0 w-[90%] md:w-[72%] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)] rounded-xl border border-gray-100/50 z-10 bg-white">
+                        <Image
+                            src="/images/escrow.png"
+                            alt="Marketplace Dashboard"
+                            width={1200}
+                            height={800}
+                            className="w-full h-auto rounded-xl"
+                            priority
+                        />
                     </div>
 
-                    {/* Mockup Images Stack */}
-                    <div className="relative w-full h-full">
-
-                        {/* User Tag (Top Left) */}
-                        <div
-                            className="absolute top-[12%] left-[5%] w-[100px] h-[50px] rounded-lg flex items-center justify-center z-30 hidden lg:flex"
-                            style={getTagStyle()}
-                        >
-                            <span className="font-semibold text-white text-base">
-                                User
-                            </span>
-                        </div>
-
-                        {/* Arrow from User to Top Image */}
-                        <Arrow fromTag="user" />
-
-                        {/* Back Mockup (Top Right - Escrow Model) */}
-                        <div className="absolute top-0 right-0 w-full max-w-[550px] lg:max-w-[680px] z-10">
-                            <Image
-                                className="w-full h-auto rounded-xl shadow-2xl ring-1 ring-gray-200/50"
-                                alt="Escrow model diagram"
-                                src={mockupImages.escrowModel}
-                                width={871}
-                                height={740}
-                                quality={90}
-                            />
-                        </div>
-
-                        {/* Business Tag (Bottom Right) */}
-                        <div
-                            className="absolute bottom-[15%] right-[5%] w-[110px] h-[50px] rounded-lg flex items-center justify-center z-30 hidden lg:flex"
-                            style={getTagStyle()}
-                        >
-                            <span className="font-semibold text-white text-base">
-                                Business
-                            </span>
-                        </div>
-
-                        {/* Arrow from Business to Bottom Image */}
-                        <Arrow fromTag="business" />
-
-                        {/* Front Mockup (Bottom Left - Seller Shipment) */}
-                        <div className="relative lg:absolute lg:top-[320px] lg:left-0 w-full max-w-[500px] lg:max-w-[620px] z-20 mt-8 lg:mt-0">
-                            <Image
-                                className="w-full h-auto rounded-xl shadow-2xl ring-1 ring-gray-200/50"
-                                alt="Seller shipment process"
-                                src={mockupImages.sellerShipment}
-                                width={675}
-                                height={472}
-                                quality={100}
-                            />
-                        </div>
-
+                    {/* 2. Front Image (Bottom Left - Mobile/Tablet View) */}
+                    <div className="absolute top-[200px] md:top-[320px] left-[-5%] md:left-0 w-[90%] md:w-[62%] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100/50 z-20 bg-white">
+                        <Image
+                            src="/images/escrow2.png"
+                            alt="Order Details"
+                            width={1000}
+                            height={700}
+                            className="w-full h-auto rounded-xl"
+                        />
                     </div>
+
+
+                    {/* --- Tags & Connectors (Visible on MD+) --- */}
+                    <div className="hidden md:block absolute inset-0 pointer-events-none z-30">
+                        {/* User Tag */}
+                        <div className="absolute top-[120px] left-[18%] animate-float-slow">
+                            <div className="relative group">
+                                {/* Tag Badge */}
+                                <div className="px-8 py-3 bg-[#a5b4fc] rounded-2xl shadow-lg text-white text-lg font-semibold flex items-center justify-center min-w-[120px] backdrop-blur-md border border-white/30"
+                                    style={{
+                                        background: 'linear-gradient(135deg, rgba(167, 139, 250, 0.9) 0%, rgba(129, 140, 248, 0.9) 100%)',
+                                        boxShadow: '0 8px 32px 0 rgba(139, 92, 246, 0.25)'
+                                    }}>
+                                    User
+                                </div>
+                                {/* Connector Line to Back Image */}
+                                <svg className="absolute top-full left-1/2 w-[150px] h-[80px] text-[#A78BFA]" style={{ overflow: 'visible', transform: 'translateX(-5px)' }}>
+                                    <path
+                                        d="M 5 5 Q 30 70 140 70"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2.5"
+                                        strokeDasharray="6 6"
+                                        strokeLinecap="round"
+                                        className="opacity-80"
+                                    />
+                                    <circle cx="140" cy="70" r="4" fill="currentColor" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        {/* Business Tag */}
+                        <div className="absolute top-[250px] left-[2%] lg:bottom-[20%] animate-float-delayed">
+                            <div className="relative group">
+                                {/* Tag Badge */}
+                                <div className="px-8 py-3 bg-[#c084fc] rounded-2xl shadow-lg text-white text-lg font-semibold flex items-center justify-center min-w-[130px] backdrop-blur-md border border-white/30"
+                                    style={{
+                                        background: 'linear-gradient(135deg, rgba(192, 132, 252, 0.9) 0%, rgba(167, 139, 250, 0.9) 100%)',
+                                        boxShadow: '0 8px 32px 0 rgba(168, 85, 247, 0.25)'
+                                    }}>
+                                    Business
+                                </div>
+                                {/* Connector Line to Front Image */}
+                                <svg className="absolute top-1/2 left-full w-[100px] h-[5px] text-[#C084FC]" style={{ overflow: 'visible', transform: 'translate(0, -50%)' }}>
+                                    <path
+                                        d="M 5 0 C 40 0 50 40 90 40"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2.5"
+                                        strokeDasharray="6 6"
+                                        strokeLinecap="round"
+                                        className="opacity-80"
+                                    />
+                                    <circle cx="90" cy="40" r="4" fill="currentColor" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
