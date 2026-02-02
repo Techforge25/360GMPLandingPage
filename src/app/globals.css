@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #240457;
+  --secondary: #304fff;
+
+  --primary-accent: #240457;
+  --foreground-accent: #22252B;
+  --hero-background: #F3F3F5;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply text-lg;
+  
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Urbanist for all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-urbanist), sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Poppins for bullet points and features */
+.feature-text,
+.bullet-point,
+li,
+.poppins {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+/* Legacy manrope class - now using Urbanist */
+.manrope {
+  font-family: var(--font-urbanist), sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+#logos svg {
+  @apply w-fit h-10 sm:h-12;
+}
+
+.benefit-section:last-of-type > div {
+  @apply mb-10;
+}
