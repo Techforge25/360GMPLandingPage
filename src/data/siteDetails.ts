@@ -1,9 +1,9 @@
 export const siteDetails = {
-    siteName: 'Finwise',
+    siteName: '360 GMP – Hire, Trade & Pay Securely in One Platform',
     siteUrl: 'https://finwise-omega.vercel.app/',
     metadata: {
-        title: 'Finwise - Next.js and Tailwind CSS Landing Page Template',
-        description: 'Finwise empowers businesses with cutting-edge technology solutions to drive success and efficiency.',
+        title: '360 GMP – Hire, Trade & Pay Securely in One Platform',
+        description: 'From job posting to bulk product trading, 360 GMP empowers businesses and individuals with escrow protection, dispute management, and full transparency.',
     },
     language: 'en-us',
     locale: 'en-US',
