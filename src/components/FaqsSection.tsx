@@ -7,30 +7,72 @@ import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
 const faqsData = [
     {
         id: 1,
-        question: 'What is 360GMP?',
-        answer: '360GMP is a unified platform for buying, selling, hiring, applying to jobs, creating business profiles, listing products, and managing transactions.',
+        question: 'What is 360 GMP?',
+        answer:
+            '360 GMP is an all-in-one B2B and B2C marketplace where businesses and individuals can post jobs, apply for opportunities, buy or sell products, and complete transactions securely using escrow payments—all within a single platform.',
     },
     {
         id: 2,
-        question: 'How does the free trial work?',
-        answer: 'Our free trial allows you to access basic features and explore the marketplace for 30 days without any commitment. Full features require a subscription.',
+        question: 'How is 360 GMP different from other platforms?',
+        answer:
+            'Unlike traditional platforms that focus on only jobs or marketplaces, 360 GMP combines job posting, job search, services, product trading, escrow payments, and dispute management in one unified ecosystem.',
     },
     {
         id: 3,
-        question: 'Do I need to pay to create a business?',
-        answer: 'Creating a basic business profile is free. You only need to pay for premium features like bulk listing, advanced analytics, or job posting features.',
+        question: 'Can I use 360 GMP for both B2B and B2C?',
+        answer:
+            'Yes. 360 GMP is designed to support both B2B and B2C workflows, allowing businesses and individuals to trade, hire, and transact securely on the same platform.',
     },
     {
         id: 4,
-        question: 'How does the escrow system work?',
-        answer: 'The escrow system securely holds funds until both the buyer and seller approve that the service or product delivery is complete, ensuring protection for all parties.',
+        question: 'Can I switch between business and personal profiles?',
+        answer:
+            'Yes. With one account, you can easily switch between business and personal profiles. Each profile has its own dashboard, settings, and activity history.',
     },
     {
         id: 5,
-        question: 'Can job-seekers use the platform for free?',
-        answer: 'Yes, job-seekers can search and apply for jobs, create personal profiles, and track applications completely free of charge.',
+        question: 'How does job posting and hiring work?',
+        answer:
+            'Businesses can post jobs, review applications, communicate with candidates, and hire verified professionals through a transparent and secure hiring process.',
+    },
+    {
+        id: 6,
+        question: 'How can users search and apply for jobs?',
+        answer:
+            'Users can search relevant jobs, apply in a few clicks, track application status, and communicate directly with businesses through their dashboard.',
+    },
+    {
+        id: 7,
+        question: 'Does 360 GMP support bulk product buying and selling?',
+        answer:
+            'Yes. Businesses can list products for bulk sales, manage orders, negotiate pricing, and complete transactions securely through escrow-based checkout.',
+    },
+    {
+        id: 8,
+        question: 'How does escrow payment work on 360 GMP?',
+        answer:
+            'Payments are held securely in escrow and released only after work completion or order approval, protecting both buyers and sellers.',
+    },
+    {
+        id: 9,
+        question: 'What happens if there is a dispute?',
+        answer:
+            '360 GMP provides a built-in dispute resolution system where issues are reviewed fairly with platform support to ensure transparency and trust.',
+    },
+    {
+        id: 10,
+        question: 'Is 360 GMP secure and reliable?',
+        answer:
+            'Yes. The platform uses verified profiles, secure payments, encrypted data, and role-based access to maintain enterprise-level security.',
+    },
+    {
+        id: 11,
+        question: 'Who should use 360 GMP?',
+        answer:
+            '360 GMP is ideal for businesses, job seekers, buyers, sellers, and enterprises looking for a single, trusted platform to manage jobs, product trading, and secure transactions.',
     },
 ];
+
 
 // Reusable FAQ Item Component
 const FaqItem: React.FC<{ faq: typeof faqsData[0] }> = ({ faq }) => {

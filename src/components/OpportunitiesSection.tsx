@@ -47,7 +47,7 @@ const OpportunitiesSection: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between lg:gap-x-20">
                 <div className="lg:w-6/12 xl:w-7/12 relative flex justify-center lg:justify-start min-h-[550px] lg:min-h-[550px] mb-16 lg:mb-0">
                     <div className="relative w-full max-w-[700px] mt-10 lg:mt-0 h-auto lg:h-[550px]">
-                        <div className="absolute top-0 left-1/2 w-[90%] max-w-[600px] z-10 hidden lg:block lg:[transform:translate(-40%,0%)_rotate(0deg)] lg:origin-top-left lg:top-0">
+                        <div className="absolute top-0 left-1/2 w-[80%] max-w-[600px] z-10 hidden lg:block lg:[transform:translate(-35%,0%)_rotate(0deg)] lg:origin-top-left lg:top-0">
                             <Image
                                 src={mockupImages.back}
                                 alt="Marketplace Back Screenshot"
@@ -58,7 +58,7 @@ const OpportunitiesSection: React.FC = () => {
                             />
                         </div>
 
-                        <div className="relative w-[90%] max-w-[550px] mx-auto lg:absolute lg:top-[50px] lg:left-1/2 lg:[transform:translate(-95%,20%)]">
+                        <div className="relative w-[70%] max-w-[550px] mx-auto lg:absolute lg:top-[50px] lg:left-1/2 lg:[transform:translate(-75%,20%)]">
                             <Image
                                 src={mockupImages.front}
                                 alt="Marketplace Front Screenshot"
