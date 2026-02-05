@@ -35,8 +35,8 @@ const BusinessSection: React.FC = () => {
     const leftFeatures = features.slice(0, half);
     const rightFeatures = features.slice(half);
 
-    const MOCKUP_WIDTH = 900;
-    const MOCKUP_HEIGHT = 750;
+    // const MOCKUP_WIDTH = 900;
+    // const MOCKUP_HEIGHT = 750;
 
     return (
         <section className="py-6 md:py-12 relative bg-white overflow-hidden" id="marketplace">
