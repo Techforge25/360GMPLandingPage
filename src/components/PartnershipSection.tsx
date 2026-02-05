@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const PartnershipSection: React.FC = () => {
     return (
-        <section className="relative w-full overflow-hidden py-24 bg-[#F8F9FF]">
+        <section className="relative w-full overflow-hidden py-16 md:py-24 bg-[#F8F9FF]">
             {/* Background Gradient/Glow */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-100/50 rounded-full blur-[80px] mix-blend-multiply"></div>
@@ -12,9 +12,9 @@ export const PartnershipSection: React.FC = () => {
             </div>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
-                <div className="text-center max-w-4xl mx-auto mb-20">
-                    <h2 className="text-[#1a0737] text-4xl md:text-[52px] font-bold mb-6 tracking-tight leading-[1.15]">
+
+                <div className="text-center max-w-4xl mx-auto mb-12 lg:mb-20">
+                    <h2 className="text-[#202939] text-4xl md:text-[52px] font-bold mb-6 tracking-tight leading-[1.15]">
                         Secure Escrow Payments
                     </h2>
                     <p className="text-[#52525b] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-normal">
@@ -22,10 +22,8 @@ export const PartnershipSection: React.FC = () => {
                     </p>
                 </div>
 
-                {/* Main Content Area */}
-                <div className="relative w-full min-h-[500px] md:min-h-[850px] mt-10">
 
-                    {/* 1. Back Image (Top Right - Desktop View) */}
+                <div className="relative w-full min-h-[500px] md:min-h-[850px] mt-10">
                     <div className="absolute top-0 right-[-5%] md:right-0 w-[90%] md:w-[72%] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)] rounded-xl border border-gray-100/50 z-10 bg-white">
                         <Image
                             src="/images/escrow.png"
@@ -36,8 +34,6 @@ export const PartnershipSection: React.FC = () => {
                             priority
                         />
                     </div>
-
-                    {/* 2. Front Image (Bottom Left - Mobile/Tablet View) */}
                     <div className="absolute top-[200px] md:top-[320px] left-[-5%] md:left-0 w-[90%] md:w-[62%] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100/50 z-20 bg-white">
                         <Image
                             src="/images/escrow2.png"
@@ -48,13 +44,9 @@ export const PartnershipSection: React.FC = () => {
                         />
                     </div>
 
-
-                    {/* --- Tags & Connectors (Visible on MD+) --- */}
                     <div className="hidden md:block absolute inset-0 pointer-events-none z-30">
-                        {/* User Tag */}
                         <div className="absolute top-[120px] left-[18%] animate-float-slow">
                             <div className="relative group">
-                                {/* Tag Badge */}
                                 <div className="px-8 py-3 bg-[#a5b4fc] rounded-2xl shadow-lg text-white text-lg font-semibold flex items-center justify-center min-w-[120px] backdrop-blur-md border border-white/30"
                                     style={{
                                         background: 'linear-gradient(135deg, rgba(167, 139, 250, 0.9) 0%, rgba(129, 140, 248, 0.9) 100%)',
@@ -62,7 +54,6 @@ export const PartnershipSection: React.FC = () => {
                                     }}>
                                     User
                                 </div>
-                                {/* Connector Line to Back Image */}
                                 <svg className="absolute top-full left-1/2 w-[150px] h-[80px] text-[#A78BFA]" style={{ overflow: 'visible', transform: 'translateX(-5px)' }}>
                                     <path
                                         d="M 5 5 Q 30 70 140 70"
@@ -81,7 +72,6 @@ export const PartnershipSection: React.FC = () => {
                         {/* Business Tag */}
                         <div className="absolute top-[250px] left-[2%] lg:bottom-[20%] animate-float-delayed">
                             <div className="relative group">
-                                {/* Tag Badge */}
                                 <div className="px-8 py-3 bg-[#c084fc] rounded-2xl shadow-lg text-white text-lg font-semibold flex items-center justify-center min-w-[130px] backdrop-blur-md border border-white/30"
                                     style={{
                                         background: 'linear-gradient(135deg, rgba(192, 132, 252, 0.9) 0%, rgba(167, 139, 250, 0.9) 100%)',
@@ -89,7 +79,6 @@ export const PartnershipSection: React.FC = () => {
                                     }}>
                                     Business
                                 </div>
-                                {/* Connector Line to Front Image */}
                                 <svg className="absolute top-1/2 left-full w-[100px] h-[5px] text-[#C084FC]" style={{ overflow: 'visible', transform: 'translate(0, -50%)' }}>
                                     <path
                                         d="M 5 0 C 40 0 50 40 90 40"
@@ -108,7 +97,7 @@ export const PartnershipSection: React.FC = () => {
 
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 

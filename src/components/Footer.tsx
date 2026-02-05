@@ -3,14 +3,14 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// React Icons for social media (assuming react-icons is installed)
+// React Icons for social media
 import { FaLinkedinIn, FaFacebookF, FaInstagram } from 'react-icons/fa';
 
 // Footer Links Data
 const companyLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About us', href: '#marketplace' },
-    { name: 'Pricing', href: '#contact' }, // Mapped to contact as no pricing section exists
+    { name: 'Pricing', href: '#contact' },
     { name: 'Why choose us', href: '#how-it-works' },
     { name: 'Contact us', href: '#contact' },
 ];
@@ -34,19 +34,16 @@ const SocialIcon: React.FC<{ Icon: React.ElementType; href: string }> = ({ Icon,
 
 const Footer: React.FC = () => {
     return (
-        // Dark Blue Background (Matching the image)
         <footer className="bg-[#0D182A] text-white border-t border-gray-700/50" id="footer">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
-                {/* Main Footer Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-20">
 
-                    {/* Column 1: Logo and Mission */}
                     <div className="col-span-2 md:col-span-1 pr-8">
                         {/* Logo */}
                         <div className="mb-4">
                             <Image
-                                src="/images/fr-logo.png" // Assume white logo variant exists
+                                src="/images/fr-logo.png"
                                 alt="3SIXTY Logo"
                                 width={120}
                                 height={35}
@@ -90,7 +87,6 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
 
-                    {/* Column 4: Contact Us and Social Media */}
                     <div>
                         <h4 className="text-white font-semibold mb-6 uppercase text-base tracking-wider">
                             Contact Us

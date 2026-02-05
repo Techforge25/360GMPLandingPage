@@ -2,31 +2,28 @@ import React from 'react';
 import Image from 'next/image';
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline';
 
-// --- Contact Info ---
+// Contact Info
 const contactInfo = [
     { icon: PhoneIcon, title: 'Call', detail: '+123456797-1' },
     { icon: EnvelopeIcon, title: 'Message', detail: 'info@gmail.com' },
     { icon: MapPinIcon, title: 'Location', detail: '70 Washington Square\nSouth, New York, NY 10012, United States' },
 ];
 
-// --- Left Side Contact Card with REAL Image Background ---
+// Contact Info Card
 const ContactInfoCard: React.FC = () => (
-    // Main Container (Yeh poora bada box hai)
     <div className="relative w-full h-full rounded-2xl shadow-2xl overflow-hidden ring-1 ring-purple-200/50">
 
-        {/* Layer 1: The Background Image */}
         <Image
-            src="/images/contactus.png" // **Yahan apni background image ka path dein**
+            src="/images/contactus.png"
             alt="Abstract background art"
-            layout="fill" // Yeh image ko poora container fill karne ke liye hai
-            objectFit="cover" // Image ko stretch kiye baghair cover karega
-            className="z-0" // Isay peeche rakha hai
+            layout="fill"
+            objectFit="cover"
+            className="z-0"
         />
 
-        {/* Layer 2: The Glass Info Box */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] p-6 rounded-2xl shadow-xl z-10"
             style={{
-                // True Glassmorphism effect
+                // Glassmorphism effect
                 background: 'rgba(255, 255, 255, 0.5)',
                 backdropFilter: 'blur(16px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(16px) saturate(180%)',
@@ -53,7 +50,7 @@ const ContactInfoCard: React.FC = () => (
     </div>
 );
 
-// --- Right Side Contact Form (No Changes) ---
+// Contact Form
 const ContactForm: React.FC = () => {
     // Reusable Input Field
     const InputField: React.FC<{ label: string; placeholder: string; value: string; fullWidth?: boolean }> = ({ label, placeholder, value, fullWidth }) => (
@@ -90,14 +87,12 @@ const ContactForm: React.FC = () => {
     );
 };
 
-// --- Main Contact Section ---
 const ContactSection: React.FC = () => {
     return (
-        <section className="py-24 md:py-32 relative bg-gray-50/50" id="contact">
+        <section className="py-16 md:py-32 relative bg-gray-50/50" id="contact">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
-                <header className="text-center mb-16">
-                    <h2 className="manrope text-4xl md:text-5xl font-extrabold text-[#240457] tracking-normal mb-3">
+                <header className="text-center mb-12 lg:mb-16">
+                    <h2 className="manrope text-4xl md:text-5xl font-extrabold text-[##202939] tracking-normal mb-3">
                         Contact Us
                     </h2>
                     <p className="text-[#697586] text-lg">
@@ -105,9 +100,8 @@ const ContactSection: React.FC = () => {
                     </p>
                 </header>
 
-                {/* Main Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
-                    {/* Left Side: Contact Info Card (Hidden on mobile) */}
+                    {/* Left Side: Contact Info Card */}
                     <div className="lg:col-span-1 h-[600px] hidden lg:block">
                         <ContactInfoCard />
                     </div>

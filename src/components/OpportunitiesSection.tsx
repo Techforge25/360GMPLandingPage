@@ -1,12 +1,11 @@
-// components/OpportunitiesSection.tsx
 import React from 'react';
 import Image from 'next/image';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
-// Mockup Images (Aapko yeh files public/images folder mein rakhni hongi)
+// Mockup Images (Final Paths)
 const mockupImages = {
-    back: '/images/marketplace-dashboard2.png',
     front: '/images/marketplace-dashboard.png',
+    back: '/images/marketplace-dashboard2.png',
 };
 
 // Feature Card Data (Same)
@@ -20,9 +19,9 @@ const B2CFeatures = [
     'Buy & sell products',
     'Protected checkout',
 ];
-
 // Feature Card Component (Same)
 const FeatureCard: React.FC<{ title: string, description: string, features: string[] }> = ({ title, description, features }) => (
+    // Note: Reverting gap-3 back as requested in the input
     <div className="bg-white p-8 rounded-xl shadow-lg ring-1 ring-gray-100 min-h-[250px] flex flex-col">
         <h3 className="manrope text-xl font-bold text-[#202939] tracking-normal mb-2">{title}</h3>
         <p className="text-gray-500 text-sm mb-4">{description}</p>
@@ -43,20 +42,12 @@ const OpportunitiesSection: React.FC = () => {
     const MOCKUP_HEIGHT = 800;
 
     return (
-        // Section ka background full width par hai
-        <section className="py-24 md:py-32 w-full relative bg-gray-50 overflow-hidden" id="opportunities">
+        <section className="py-6 md:py-32 w-full relative bg-gray-50 overflow-hidden" id="opportunities">
 
-            {/* Content Container: max-width aur center alignment yahan limit hoga */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between lg:gap-x-20">
-
-                {/* Left Side: Mockup Images (Adjusted Positioning) */}
-                <div className="lg:w-5/12 xl:w-6/12 relative flex justify-center lg:justify-start min-h-[600px] mb-16 lg:mb-0 px-[72px]">
-
-                    {/* Position adjustment: Is container ko left margin denge takay ye screen edge se shuru ho */}
-                    <div className="relative w-full flex justify-center lg:justify-start items-center lg:-ml-20 xl:-ml-32">
-
-                        {/* Back Mockup (Thora bara aur peechhe) */}
-                        <div className="absolute left-0 w-[80%] max-w-[550px] z-10 hidden lg:block">
+                <div className="lg:w-6/12 xl:w-7/12 relative flex justify-center lg:justify-start min-h-[550px] lg:min-h-[550px] mb-16 lg:mb-0">
+                    <div className="relative w-full max-w-[700px] mt-10 lg:mt-0 h-auto lg:h-[550px]">
+                        <div className="absolute top-0 left-1/2 w-[90%] max-w-[600px] z-10 hidden lg:block lg:[transform:translate(-40%,0%)_rotate(0deg)] lg:origin-top-left lg:top-0">
                             <Image
                                 src={mockupImages.back}
                                 alt="Marketplace Back Screenshot"
@@ -67,23 +58,20 @@ const OpportunitiesSection: React.FC = () => {
                             />
                         </div>
 
-                        {/* Front Mockup (Foreground mein) */}
-                        <div className="relative w-[90%] max-w-[650px] z-20 ml-auto">
+                        <div className="relative w-[90%] max-w-[550px] mx-auto lg:absolute lg:top-[50px] lg:left-1/2 lg:[transform:translate(-95%,20%)]">
                             <Image
                                 src={mockupImages.front}
                                 alt="Marketplace Front Screenshot"
                                 width={MOCKUP_WIDTH}
                                 height={MOCKUP_HEIGHT}
                                 quality={100}
-                                // Shadow aur border add kiya gaya hai
                                 className="w-full h-auto rounded-xl"
                             />
                         </div>
                     </div>
                 </div>
 
-                {/* Right Side: Text and Feature Cards (Content area) */}
-                <div className="lg:w-7/12 xl:w-6/12 text-center lg:text-left">
+                <div className="lg:w-6/12 xl:w-5/12 text-center lg:text-left">
 
                     <p className="text-sm font-semibold text-purple-700 uppercase tracking-wider mb-3 bg-purple-100 w-fit px-3 py-1 rounded-full mx-auto lg:mx-0">
                         Smooth onboarding
@@ -95,13 +83,12 @@ const OpportunitiesSection: React.FC = () => {
 
                     <p className="mx-auto text-[#697586] lg:mx-0 mb-12 text-lg">
                         A flexible marketplace designed to support both product-based
-                        and service-based transactions. Whether youre buying in
+                        and service-based transactions. Whether you’re buying in
                         bulk or offering professional services, the platform adapts
                         to your business needs.
                     </p>
 
-                    {/* Feature Cards Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <FeatureCard
                             title="B2B Marketplace"
                             description="Built for businesses that need scale and security."

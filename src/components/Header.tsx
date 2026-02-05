@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { FC } from "react";
 import Image from "next/image";
 
-// Props ke liye TypeScript interface define ki hai
+// TypeScript interface for Props
 interface NavbarProps {
   activeSection?: string;
 }
@@ -17,7 +17,7 @@ const Navbar: FC<NavbarProps> = ({ activeSection = "" }) => {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const headerOffset = 84; // Aapke header ki height
+    const headerOffset = 84; // Header height
     const rect = el.getBoundingClientRect();
     const offsetTop = window.scrollY + rect.top - headerOffset;
 
@@ -26,7 +26,7 @@ const Navbar: FC<NavbarProps> = ({ activeSection = "" }) => {
       behavior: "smooth",
     });
 
-    // Mobile menu ko band karne ke liye
+    // Close mobile menu
     if (isOpen) {
       setIsOpen(false);
     }
@@ -34,7 +34,6 @@ const Navbar: FC<NavbarProps> = ({ activeSection = "" }) => {
 
   const getNavLinkClass = (sectionId: string) => {
     const isActive = activeSection === sectionId;
-    // Template literal ko saaf kar diya hai behtar readability ke liye
     return [
       "relative inline-block text-md transition-colors duration-300 cursor-pointer",
       isActive
@@ -49,18 +48,17 @@ const Navbar: FC<NavbarProps> = ({ activeSection = "" }) => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo ke liye <img> ki jagah Next.js ka <Image> component istemal kiya hai */}
           <button
             onClick={() => scrollToSection("home")}
             className="flex-shrink-0 flex items-center"
           >
             <Image
-              src="/images/Logo.png" // Yeh image aapke `public` folder mein honi chahiye
+              src="/images/Logo.png"
               alt="3SIXTY Logo"
               width={100}
               height={30}
               className="h-auto w-auto"
-              priority // Logo ko jaldi load karne ke liye
+              priority
             />
           </button>
 

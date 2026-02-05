@@ -1,7 +1,6 @@
-// components/HiringSection.tsx
 import React from 'react';
 import Image from 'next/image';
-import { BriefcaseIcon, MagnifyingGlassIcon, LockClosedIcon } from '@heroicons/react/24/outline'; // Outline icons for a lighter look
+import { BriefcaseIcon, MagnifyingGlassIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 
 // Feature Data
 const hiringFeatures = [
@@ -22,17 +21,13 @@ const hiringFeatures = [
     },
 ];
 
-// Mockup Image
 const mockupImage = {
-    src: '/images/jobs.png', // Aapko yeh image public/images folder mein rakhni hogi
+    src: '/images/jobs.png',
 };
 
-
-// Feature Item Component
 const FeatureItem: React.FC<{ icon: React.ElementType; title: string; description: string }> = ({ icon: Icon, title, description }) => (
     <div className="flex flex-col border-b border-gray-200 pb-8 last:border-b-0 last:pb-0">
         <div className="flex items-center space-x-4 mb-3">
-            {/* Icon Container (Purple circle background) */}
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-purple-100/50 flex-shrink-0">
                 <Icon className="w-6 h-6 text-purple-700" />
             </div>
@@ -46,20 +41,17 @@ const FeatureItem: React.FC<{ icon: React.ElementType; title: string; descriptio
 
 
 const HiringSection: React.FC = () => {
-    // Next/Image ke liye static dimensions
     const MOCKUP_WIDTH = 1200;
     const MOCKUP_HEIGHT = 900;
 
     return (
-        <section className="py-24 md:py-32 relative bg-white overflow-hidden" id="hiring">
+        <section className="py-16 md:py-32 relative bg-white overflow-hidden" id="hiring">
 
-            {/* Background Blob/Glow on the right side */}
             <div className="absolute top-0 right-0 h-full w-1/2 bg-purple-500/10 blur-3xl -z-10 opacity-30 hidden lg:block"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between lg:gap-x-20">
 
-                {/* Left Side: Features List */}
-                <div className="lg:w-6/12 xl:w-5/12 text-center lg:text-left mb-16 lg:mb-0">
+                <div className="lg:w-6/12 xl:w-5/12 text-center lg:text-left mb-12 lg:mb-0">
                     <div className="space-y-12">
                         {hiringFeatures.map((feature, index) => (
                             <FeatureItem
@@ -72,10 +64,9 @@ const HiringSection: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Right Side: Mockup Image */}
                 <div className="lg:w-6/12 xl:w-7/12 relative flex justify-center lg:justify-end">
 
-                    {/* Mockup Container for positioning */}
+
                     <div className="relative w-full max-w-xl lg:max-w-none lg:w-[800px] z-10">
                         <Image
                             src={mockupImage.src}
@@ -83,7 +74,6 @@ const HiringSection: React.FC = () => {
                             width={MOCKUP_WIDTH}
                             height={MOCKUP_HEIGHT}
                             quality={100}
-                            // Mockup ko shadow aur rounding di gayi hai
                             className="w-full h-auto rounded-xl shadow-2xl shadow-purple-300/50 ring-1 ring-gray-100"
                         />
                     </div>

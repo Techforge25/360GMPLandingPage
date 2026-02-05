@@ -1,9 +1,8 @@
-// components/MarketplaceSection.tsx
 import React from 'react';
 import Image from 'next/image';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
-// Features data (Same)
+// Features data 
 const features = [
     'Create Business Profiles',
     'Post Jobs & Hire Faster',
@@ -14,88 +13,78 @@ const features = [
     'Team & Role Management',
 ];
 
-// Mockup images (Updated Paths)
+// Mockup images
 const mockupImages = {
     main: '/images/marketplace3.png',
     overlay: '/images/marketplace2.png',
 };
+
+// Reusable Feature Item Component (Content changes here)
+const FeatureItem: React.FC<{ feature: string }> = ({ feature }) => (
+    <div className="flex items-start text-left">
+        <CheckCircleIcon className="w-5 h-5 text-purple-600 flex-shrink-0 mt-1" />
+        <span className="ml-3 text-gray-800 font-medium whitespace-nowrap">
+            {feature}
+        </span>
+    </div>
+);
+
 
 const BusinessSection: React.FC = () => {
     const half = Math.ceil(features.length / 2);
     const leftFeatures = features.slice(0, half);
     const rightFeatures = features.slice(half);
 
-
+    const MOCKUP_WIDTH = 900;
+    const MOCKUP_HEIGHT = 750;
 
     return (
-        <section className="py-24 md:py-32 relative bg-white overflow-hidden" id="marketplace">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between">
+        <section className="py-6 md:py-12 relative bg-white overflow-hidden" id="marketplace">
+            <div className="w-full max-w-[90%] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-between lg:gap-x-20">
 
-                {/* Left Side: Text and Features (No change) */}
-                <div className="lg:w-5/12 text-center lg:text-left mb-12 lg:mb-0">
+                {/* Left Side: Text and Features (Sizing adjusted for better contrast) */}
+                <div className="lg:w-1/2 text-center lg:text-left mb-16 lg:mb-0">
                     <p className="text-sm font-semibold text-purple-700 uppercase tracking-wider mb-3 bg-purple-100 w-fit px-3 py-1 rounded-full mx-auto lg:mx-0">
                         Smooth onboarding
                     </p>
-                    <h2 className="manrope text-3xl md:text-5xl font-extrabold text-[#202939] tracking-normal mb-6">
+                    <h2 className="manrope text-4xl md:text-5xl font-extrabold text-[#202939] tracking-tight mb-6 leading-tight">
                         Buy & Sell Smarter in One Unified Marketplace
                     </h2>
-                    <p className="text-[#697586] max-w-lg lg:max-w-none mx-auto lg:mx-0 mb-10 text-base">
+                    <p className="text-gray-600 max-w-lg lg:max-w-none mx-auto lg:mx-0 mb-10 text-lg">
                         Connect directly with verified buyers and sellers on a powerful
                         marketplace built for both B2B and B2C transactions. From bulk
                         products to professional services, everything happens in one
                         secure, transparent, and scalable platform.
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 max-w-lg mx-auto lg:mx-0">
-                        {/* Features Columns */}
                         <div className="flex flex-col space-y-4 items-start">
                             {leftFeatures.map((feature, index) => (
-                                <div key={index} className="flex items-start text-left">
-                                    <CheckCircleIcon className="w-5 h-5 text-purple-600 flex-shrink-0 mt-1" />
-                                    <span className="ml-3 text-gray-800 font-medium ">{feature}</span>
-                                </div>
+                                <FeatureItem key={`l-${index}`} feature={feature} />
                             ))}
                         </div>
                         <div className="flex flex-col space-y-4 items-start">
                             {rightFeatures.map((feature, index) => (
-                                <div key={index} className="flex items-start text-left">
-                                    <CheckCircleIcon className="w-5 h-5 text-purple-600 flex-shrink-0 mt-1" />
-                                    <span className="ml-3 text-gray-800 font-medium">{feature}</span>
-                                </div>
+                                <FeatureItem key={`r-${index}`} feature={feature} />
                             ))}
                         </div>
                     </div>
                 </div>
 
-                {/* Right Side: Responsive Mockups */}
-                <div className="lg:w-7/12 relative flex justify-center lg:justify-end min-h-[400px] lg:min-h-[600px] mt-10 lg:mt-0">
+                <div className="lg:w-1/2 relative flex justify-center lg:justify-end min-h-[400px] lg:min-h-[700px] mt-10 lg:mt-0">
 
-                    {/* Gradient Blob (Image ke peechhe ka purple glow) */}
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl -z-10 opacity-30"></div>
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] -z-10 opacity-40"></div>
 
-                    {/* Main Mockup (Bada screenshot) - Responsive */}
-                    <div className="relative w-full max-w-[650px]">
+                    <div className="relative w-full">
                         <Image
                             src={mockupImages.main}
                             alt="Marketplace Main Screenshot"
-                            width={532}
-                            height={578}
-                            quality={90}
-                            className="w-full h-auto object-cover rounded-2xl"
+                            width={1100}
+                            height={900}
+                            quality={100}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1100px"
+                            className="w-full h-auto object-contain drop-shadow-2xl"
                         />
                     </div>
-
-                    {/* Overlay Mockup (Chota image) - Clean, no box */}
-                    {/* <div className="absolute bottom-[30px] left-[30px] lg:bottom-[50px] lg:-left-[50px] w-[180px] sm:w-[230px] z-20 rounded-xl shadow-2xl">
-                        <Image
-                            src={mockupImages.overlay}
-                            alt="Marketplace Filter Overlay"
-                            width={230}
-                            height={280}
-                            quality={100}
-                            className="w-full h-auto object-cover rounded-xl"
-                        />
-                    </div> */}
-
                 </div>
             </div>
         </section>
