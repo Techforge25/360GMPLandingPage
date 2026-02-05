@@ -96,7 +96,7 @@ const ContactSection: React.FC = () => {
                         Contact Us
                     </h2>
                     <p className="text-[#697586] text-lg">
-                        We’re here to help with demos, support, partnerships and inquiries.
+                        We're here to help with demos, support, partnerships and inquiries.
                     </p>
                 </header>
 
