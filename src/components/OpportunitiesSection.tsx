@@ -83,7 +83,7 @@ const OpportunitiesSection: React.FC = () => {
 
                     <p className="mx-auto text-[#697586] lg:mx-0 mb-12 text-lg">
                         A flexible marketplace designed to support both product-based
-                        and service-based transactions. Whether you’re buying in
+                        and service-based transactions. Whether you&apos;re buying in
                         bulk or offering professional services, the platform adapts
                         to your business needs.
                     </p>
