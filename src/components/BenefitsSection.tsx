@@ -31,7 +31,7 @@ const MONITOR_HEIGHT = 600;
 
 // Reusable Feature List Component
 const FeatureList: React.FC<{ features: string[] }> = ({ features }) => (
-    <ul className="space-y-4">
+    <ul className="space-y-4 text-left">
         {features.map((feature, index) => (
             <li key={index} className="flex items-start space-x-3">
                 <CheckCircleIcon className="w-5 h-5 text-purple-600 flex-shrink-0 mt-1" />

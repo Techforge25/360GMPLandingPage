@@ -55,7 +55,6 @@ const Footer: React.FC = () => {
                         </p>
                     </div>
 
-                    {/* Column 2: Company Links */}
                     <div>
                         <h4 className="text-white font-semibold mb-6 uppercase text-base tracking-wider">
                             Company
