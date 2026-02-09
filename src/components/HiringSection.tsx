@@ -26,14 +26,14 @@ const mockupImage = {
 };
 
 const FeatureItem: React.FC<{ icon: React.ElementType; title: string; description: string }> = ({ icon: Icon, title, description }) => (
-    <div className="flex flex-col border-b border-gray-200 pb-8 last:border-b-0 last:pb-0">
+    <div className="flex flex-col border-b border-gray-200 pb-8 last:border-b-0 last:pb-0 text-left">
         <div className="flex items-center space-x-4 mb-3">
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-purple-100/50 flex-shrink-0">
                 <Icon className="w-6 h-6 text-purple-700" />
             </div>
             <h3 className="manrope text-xl font-bold text-[#202939]">{title}</h3>
         </div>
-        <p className="text-gray-600 max-w-md ml-16 md:ml-16">
+        <p className="text-gray-600 max-w-md ml-16 md:ml-16 ">
             {description}
         </p>
     </div>
@@ -49,9 +49,9 @@ const HiringSection: React.FC = () => {
 
             <div className="absolute top-0 right-0 h-full w-1/2 bg-purple-500/10 blur-3xl -z-10 opacity-30 hidden lg:block"></div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between lg:gap-x-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start lg:items-center justify-between lg:gap-x-20">
 
-                <div className="lg:w-6/12 xl:w-5/12 text-center lg:text-left mb-12 lg:mb-0">
+                <div className="lg:w-6/12 xl:w-5/12 mb-12 lg:mb-0">
                     <div className="space-y-12">
                         {hiringFeatures.map((feature, index) => (
                             <FeatureItem
