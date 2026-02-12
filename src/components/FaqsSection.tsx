@@ -1,105 +1,76 @@
 "use client";
 
-import React, { useState } from 'react';
-import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
+import React, { useEffect, useRef, useState } from "react";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-// FAQ Data
 const faqsData = [
     {
         id: 1,
-        question: 'What is 360GMP?',
+        question: "What makes 360 Global Marketplace enterprise grade?",
         answer:
-            '360GMP is an all-in-one B2B and B2C marketplace where businesses and individuals can post jobs, apply for opportunities, buy or sell products, and complete transactions securely using escrow payments—all within a single platform.',
+            "360 GMP combines verified enterprise networks, secure escrow transactions, analytics, and compliance tooling within a unified platform designed for cross-border business at scale.",
     },
     {
         id: 2,
-        question: 'How is 360GMP different from other platforms?',
+        question: "How does 360 GMP differ from traditional B2B platforms?",
         answer:
-            'Unlike traditional platforms that focus solely on jobs or product trading, 360 GMP offers a unified ecosystem where businesses and individuals can post jobs, search for opportunities, trade products, manage payments through escrow, and resolve disputes efficiently—all within one secure platform. ',
+            "360 GMP integrates trade, talent, and secure transaction management into one ecosystem. Enterprises gain verified networks, institutional escrow, dispute resolution, analytics, and multi-market access in a single dashboard.",
     },
     {
         id: 3,
-        question: 'Can I use 360GMP for both B2B and B2C?',
+        question: "What security measures protect enterprise transactions?",
         answer:
-            'Yes. 360GMP is designed to support both B2B and B2C workflows, allowing businesses and individuals to trade, hire, and transact securely on the same platform.',
+            "We provide escrow protection, multi-layer verification, encrypted data transmission, compliance alignment, and professional dispute resolution for institutional-level security.",
     },
     {
         id: 4,
-        question: 'Can I switch between business and personal profiles?',
+        question: "Can we integrate 360 GMP with existing systems?",
         answer:
-            'Yes. With one account, you can easily switch between business and personal profiles. Each profile has its own dashboard, settings, and activity history.',
+            "Yes. 360 GMP offers API integration capabilities for ERP, CRM, and procurement systems. Custom integration support is available for enterprise clients.",
     },
     {
         id: 5,
-        question: 'How does job posting and hiring work?',
+        question: "How does the global talent exchange work?",
         answer:
-            'Businesses can post jobs, review applications, communicate with candidates, and hire verified professionals through a transparent and secure hiring process.',
+            "Enterprises connect with pre-verified professionals across 180+ countries using milestone-based payments, quality assurance, and compliance documentation.",
     },
     {
         id: 6,
-        question: 'How can users search and apply for jobs?',
+        question: "Which compliance standards are supported?",
         answer:
-            'Users can search relevant jobs, apply in a few clicks, track application status, and communicate directly with businesses through their dashboard.',
-    },
-    {
-        id: 7,
-        question: 'Does 360GMP support bulk product buying and selling?',
-        answer:
-            'Yes. Businesses can list products for bulk sales, manage orders, negotiate pricing, and complete transactions securely through escrow-based checkout.',
-    },
-    {
-        id: 8,
-        question: 'How does escrow payment work on 360GMP?',
-        answer:
-            'Payments are held securely in escrow and released only after work completion or order approval, protecting both buyers and sellers.',
-    },
-    {
-        id: 9,
-        question: 'What happens if there is a dispute?',
-        answer:
-            '360GMP provides a built-in dispute resolution system where issues are reviewed fairly with platform support to ensure transparency and trust.',
-    },
-    {
-        id: 10,
-        question: 'Is 360GMP secure and reliable?',
-        answer:
-            'Yes. The platform uses verified profiles, secure payments, encrypted data, and role-based access to maintain enterprise-level security.',
-    },
-    {
-        id: 11,
-        question: 'Who should use 360GMP?',
-        answer:
-            '360GMP is ideal for businesses, job seekers, buyers, sellers, and enterprises looking for a single, trusted platform to manage jobs, product trading, and secure transactions.',
+            "We support international trade regulations, data protection standards including GDPR and SOC 2, AML protocols, and cross-border transaction requirements.",
     },
 ];
 
-
-const FaqItem: React.FC<{ faq: typeof faqsData[0] }> = ({ faq }) => {
+const FaqItem: React.FC<{ faq: typeof faqsData[0]; index: number; isVisible: boolean }> = ({ faq, index, isVisible }) => {
     const [isOpen, setIsOpen] = useState(faq.id === 1);
 
     const toggleOpen = () => {
         setIsOpen(!isOpen);
     };
 
-    const Icon = isOpen ? MinusCircleIcon : PlusCircleIcon;
-
     return (
         <div
-            className={`border border-gray-200/80 rounded-xl mb-4 transition-all duration-300 ${isOpen ? 'bg-white shadow-lg' : 'bg-white'}`}
+            className={`group border border-gray-200 rounded-xl mb-4 transition-all duration-500 ${isOpen ? "bg-white shadow-sm" : "bg-white"} ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+            style={{ transitionDelay: isVisible ? `${index * 60}ms` : "0ms" }}
         >
             <button
                 onClick={toggleOpen}
-                className="flex justify-between items-center w-full p-5 md:p-6 text-left focus:outline-none"
+                className="flex justify-between items-center w-full p-6 text-left focus:outline-none"
             >
-                <span className={`manrope text-lg font-semibold ${isOpen ? 'text-[#1a0737]' : 'text-gray-800'}`}>
+                <span className={`text-base md:text-lg font-semibold pr-4 transition-colors ${isOpen ? "text-[#240457]" : "text-gray-900"}`}>
                     {faq.question}
                 </span>
-                <Icon className={`w-6 h-6 text-gray-400 flex-shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-0' : 'rotate-0'}`} />
+                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-[#9747FF] rotate-180" : "bg-[#9747FF]/10"}`}>
+                    <ChevronDownIcon className={`w-5 h-5 transition-colors ${isOpen ? "text-white" : "text-[#9747FF]"}`} />
+                </div>
             </button>
             {isOpen && (
                 <div
-                    className="px-5 md:px-6 pb-5 pt-0 text-gray-600 text-base leading-relaxed"
-                    style={{ animation: 'fadeIn 0.3s' }}
+                    className="px-6 pb-6 pt-0 text-gray-600 text-sm md:text-base leading-relaxed border-t border-gray-100 mt-2 pt-4"
+                    style={{ animation: "fadeIn 0.4s ease-out" }}
                 >
                     {faq.answer}
                 </div>
@@ -108,21 +79,62 @@ const FaqItem: React.FC<{ faq: typeof faqsData[0] }> = ({ faq }) => {
     );
 };
 
-
 const FaqsSection: React.FC = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <section className="py-16 md:py-32 relative bg-white" id="faqs">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="manrope text-4xl md:text-5xl font-extrabold text-[#202939] tracking-tight mb-16">
-                    FAQs
-                </h2>
-                <div className="max-w-3xl mx-auto text-left space-y-4">
-                    {faqsData.map((faq) => (
-                        <FaqItem key={faq.id} faq={faq} />
-                    ))}
+        <section ref={sectionRef} className="relative py-20 md:py-28 overflow-hidden bg-white" id="faqs">
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <p className={`text-xs font-semibold text-[#240457] uppercase tracking-[0.3em] mb-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                        Questions and Answers
+                    </p>
+                    <h2 className={`text-3xl md:text-5xl font-semibold text-[#240457] tracking-tight mb-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "100ms" }}>
+                        Frequently Asked Questions
+                    </h2>
+                    <p className={`text-gray-600 text-base md:text-lg max-w-3xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "200ms" }}>
+                        Learn more about platform capabilities, compliance, and enterprise onboarding.
+                    </p>
                 </div>
 
+                <div className="max-w-4xl mx-auto">
+                    {faqsData.map((faq, index) => (
+                        <FaqItem key={faq.id} faq={faq} index={index} isVisible={isVisible} />
+                    ))}
+                </div>
             </div>
+
+            <style jsx>{`
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-8px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `}</style>
         </section>
     );
 };

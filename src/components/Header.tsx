@@ -1,191 +1,214 @@
 "use client";
-
-import { useState } from "react";
-import type { FC } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-// TypeScript interface for Props
-interface NavbarProps {
-  activeSection?: string;
-}
+const navLinks = [
+  { name: "Home", href: "#home", type: "scroll" },
+  { name: "About", href: "#mission-vision", type: "scroll" },
+  { name: "Platform", href: "#platform-overview", type: "scroll" },
+  { name: "Opportunities", href: "#opportunities", type: "scroll" },
+  { name: "Contact", href: "#contact", type: "scroll" },
+  { name: "Login", href: "/login", type: "link" },
+];
 
-const Navbar: FC<NavbarProps> = ({ activeSection = "" }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Header: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const headerOffset = 84; // Header height
-    const rect = el.getBoundingClientRect();
-    const offsetTop = window.scrollY + rect.top - headerOffset;
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    window.scrollTo({
-      top: offsetTop,
-      behavior: "smooth",
-    });
+  const scrollToSection = (href: string) => {
+    const id = href.replace("#", "");
+    const element = document.getElementById(id);
 
-    // Close mobile menu
-    if (isOpen) {
-      setIsOpen(false);
+    if (element) {
+      const headerOffset = 84;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
-  };
 
-  const getNavLinkClass = (sectionId: string) => {
-    const isActive = activeSection === sectionId;
-    return [
-      "relative inline-block text-md transition-colors duration-300 cursor-pointer",
-      isActive
-        ? "text-primary after:scale-x-100"
-        : "text-[#22252B] hover:text-primary after:scale-x-0 hover:after:scale-x-100",
-      "after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full",
-      "after:bg-primary after:origin-left after:transition-transform after:duration-300",
-    ].join(" ");
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <button
-            onClick={() => scrollToSection("home")}
-            className="flex-shrink-0 flex items-center"
-          >
-            <Image
-              src="/images/Logo.png"
-              alt="3SIXTY Logo"
-              width={100}
-              height={30}
-              className="h-auto w-auto"
-              priority
-            />
-          </button>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-gray-200"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            <button
+              onClick={() => scrollToSection("#home")}
+              className="flex items-center transform hover:scale-105 transition-transform duration-300"
+              aria-label="Go to top"
+            >
+              <Image
+                src="/images/fr-logo.png"
+                alt="360 Global Marketplace"
+                width={120}
+                height={45}
+                quality={100}
+                priority
+                className="h-auto w-auto"
+                style={{
+                  filter: "none",
+                }}
+              />
+            </button>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-12 ">
-            <button
-              onClick={() => scrollToSection("home")}
-              className={getNavLinkClass("home")}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection("marketplace")}
-              className={getNavLinkClass("marketplace")}
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("opportunities")}
-              className={getNavLinkClass("opportunities")}
-            >
-              Our Services
-            </button>
-            <button
-              onClick={() => scrollToSection("how-it-works")}
-              className={getNavLinkClass("how-it-works")}
-            >
-              Why Choose Us
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className={getNavLinkClass("contact")}
-            >
-              Contact Us
-            </button>
-          </div>
+            <nav className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <div key={link.name}>
+                  {link.type === "scroll" ? (
+                    <button
+                      onClick={() => scrollToSection(link.href)}
+                      className={`group relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+                        isScrolled
+                          ? "text-gray-700 hover:text-[#240457]"
+                          : "text-gray-800 hover:text-[#240457]"
+                      }`}
+                    >
+                      {link.name}
+                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-[#9747FF] to-[#7a3ff5] group-hover:w-3/4 transition-all duration-300 rounded-full"></span>
+                    </button>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className={`group relative px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+                        isScrolled
+                          ? "text-gray-700 hover:text-[#240457]"
+                          : "text-gray-800 hover:text-[#240457]"
+                      }`}
+                    >
+                      {link.name}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </nav>
 
-          {/* Desktop Action Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="bg-primary text-white font-medium px-6 py-2 rounded-md hover:bg-primary-accent transition-colors duration-300"
-            >
-              Contact Us
-            </button>
-          </div>
+            <div className="hidden lg:flex items-center gap-3">
+              <button
+                onClick={() => scrollToSection("#contact")}
+                className="group relative px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 overflow-hidden bg-white"
+                style={{
+                  border: "1px solid rgba(36, 4, 87, 0.15)",
+                  boxShadow: "0 10px 24px rgba(36, 4, 87, 0.08)",
+                }}
+              >
+                <span className="relative z-10 text-[#240457]">Join the Marketplace</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#9747FF]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+              </button>
+            </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
             <button
-              onClick={toggleMenu}
-              className="text-gray-500 hover:text-gray-800 focus:outline-none"
-              aria-label="Toggle menu"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`lg:hidden p-2 rounded-lg transition-colors ${
+                isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-gray-800 hover:bg-gray-100"
+              }`}
+              aria-label="Toggle navigation"
             >
-              {isOpen ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+              {isMobileMenuOpen ? (
+                <XMarkIcon className="w-6 h-6" />
               ) : (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
+                <Bars3Icon className="w-6 h-6" />
               )}
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Menu (Dropdown) */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200">
-          <div className="px-4 pt-2 pb-6 space-y-2">
-            <button
-              onClick={() => scrollToSection("home")}
-              className="block w-full text-left px-3 py-2 rounded-md text-xl font-medium transition-colors text-gray-600 hover:text-primary hover:bg-gray-50"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection("marketplace")}
-              className="block w-full text-left px-3 py-2 rounded-md text-xl font-medium transition-colors text-gray-600 hover:text-primary hover:bg-gray-50"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("opportunities")}
-              className="block w-full text-left px-3 py-2 rounded-md text-xl font-medium transition-colors text-gray-600 hover:text-primary hover:bg-gray-50"
-            >
-              Our Services
-            </button>
-            <button
-              onClick={() => scrollToSection("how-it-works")}
-              className="block w-full text-left px-3 py-2 rounded-md text-xl font-medium transition-colors text-gray-600 hover:text-primary hover:bg-gray-50"
-            >
-              Why Choose Us
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="block w-full text-left px-3 py-2 rounded-md text-xl font-medium transition-colors text-gray-600 hover:text-primary hover:bg-gray-50"
-            >
-              Contact Us
-            </button>
+      <div
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${
+          isMobileMenuOpen ? "visible" : "invisible"
+        }`}
+      >
+        <div
+          className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
+            isMobileMenuOpen ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        ></div>
+
+        <div
+          className={`absolute top-0 right-0 h-full w-80 max-w-full bg-white shadow-xl transform transition-transform duration-300 ${
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <Image
+                src="/images/logo.png"
+                alt="360 Global Marketplace"
+                width={120}
+                height={36}
+                quality={100}
+                className="h-auto w-auto"
+              />
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                aria-label="Close navigation"
+              >
+                <XMarkIcon className="w-6 h-6" />
+              </button>
+            </div>
+
+            <nav className="flex-1 overflow-y-auto p-6">
+              <div className="space-y-2">
+                {navLinks.map((link) => (
+                  <div key={link.name}>
+                    {link.type === "scroll" ? (
+                      <button
+                        onClick={() => scrollToSection(link.href)}
+                        className="w-full text-left px-4 py-3 rounded-lg font-medium text-gray-700 hover:bg-purple-50 hover:text-[#240457] transition-colors"
+                      >
+                        {link.name}
+                      </button>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="block w-full text-left px-4 py-3 rounded-lg font-medium text-gray-700 hover:bg-purple-50 hover:text-[#240457] transition-colors"
+                      >
+                        {link.name}
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </nav>
+
+            <div className="p-6 border-t border-gray-200">
+              <button
+                onClick={() => scrollToSection("#contact")}
+                className="w-full px-6 py-3 rounded-lg font-semibold text-white shadow-md transition-all duration-300 transform hover:scale-105"
+                style={{ background: "linear-gradient(135deg, #7a3ff5 0%, #9747FF 100%)" }}
+              >
+                Join the Marketplace
+              </button>
+            </div>
           </div>
         </div>
-      )}
-    </nav>
+      </div>
+    </>
   );
 };
 
-export default Navbar;
+export default Header;

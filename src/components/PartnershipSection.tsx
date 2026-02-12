@@ -1,103 +1,90 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export const PartnershipSection: React.FC = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <section className="relative w-full overflow-hidden py-16 md:py-24 bg-[#F8F9FF]">
-            {/* Background Gradient/Glow */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-100/50 rounded-full blur-[80px] mix-blend-multiply"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-purple-100/50 rounded-full blur-[80px] mix-blend-multiply"></div>
-                <div className="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-pink-100/30 rounded-full blur-[60px] mix-blend-multiply"></div>
-            </div>
+        <section ref={sectionRef} className="relative w-full overflow-hidden py-20 md:py-28 bg-white">
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                <div className="text-center max-w-4xl mx-auto mb-12 lg:mb-20">
-                    <h2 className="text-[#202939] text-4xl md:text-[52px] font-bold mb-6 tracking-tight leading-[1.15]">
-                        Secure Escrow Payments
-                    </h2>
-                    <p className="text-[#52525b] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-normal">
-                        Protect your transactions with milestone-based escrow. Funds are released only when work is approved, ensuring safety for both businesses and professionals.
+                <div className="text-center max-w-4xl mx-auto mb-16">
+                    <p className={`text-xs font-semibold text-[#240457] uppercase tracking-[0.3em] mb-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                        Trust and Protection
                     </p>
+                    <h2 className={`text-gray-900 text-3xl md:text-5xl font-semibold mb-6 tracking-tight leading-tight transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "100ms" }}>
+                        Enterprise-Grade Escrow Protection
+                    </h2>
+                    <p className={`text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "200ms" }}>
+                        Institutional transaction security with milestone-based escrow, verification, and dispute oversight for every international engagement.
+                    </p>
+
+                    <div className={`flex flex-wrap gap-3 justify-center mt-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "300ms" }}>
+                        <div className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-[#9747FF]/10 text-[#240457] border border-[#9747FF]/20">
+                            Bank-grade escrow
+                        </div>
+                        <div className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-[#9747FF]/10 text-[#240457] border border-[#9747FF]/20">
+                            Verified transactions
+                        </div>
+                        <div className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-[#9747FF]/10 text-[#240457] border border-[#9747FF]/20">
+                            Global compliance
+                        </div>
+                    </div>
                 </div>
 
-
-                <div className="relative w-full min-h-[500px] md:min-h-[850px] mt-10">
-                    <div className="absolute top-0 right-[-5%] md:right-0 w-[90%] md:w-[72%] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)] rounded-xl border border-gray-100/50 z-10 bg-white">
-                        <Image
-                            src="/images/escrow.png"
-                            alt="Marketplace Dashboard"
-                            width={1200}
-                            height={800}
-                            className="w-full h-auto rounded-xl"
-                            priority
-                        />
-                    </div>
-                    <div className="absolute top-[200px] md:top-[320px] left-[-5%] md:left-0 w-[90%] md:w-[62%] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] rounded-xl border border-gray-100/50 z-20 bg-white">
-                        <Image
-                            src="/images/escrow2.png"
-                            alt="Order Details"
-                            width={1000}
-                            height={700}
-                            className="w-full h-auto rounded-xl"
-                        />
-                    </div>
-
-                    <div className="hidden md:block absolute inset-0 pointer-events-none z-30">
-                        <div className="absolute top-[120px] left-[18%] animate-float-slow">
-                            <div className="relative group">
-                                <div className="px-8 py-3 bg-[#a5b4fc] rounded-2xl shadow-lg text-white text-lg font-semibold flex items-center justify-center min-w-[120px] backdrop-blur-md border border-white/30"
-                                    style={{
-                                        background: 'linear-gradient(135deg, rgba(167, 139, 250, 0.9) 0%, rgba(129, 140, 248, 0.9) 100%)',
-                                        boxShadow: '0 8px 32px 0 rgba(139, 92, 246, 0.25)'
-                                    }}>
-                                    User
-                                </div>
-                                <svg className="absolute top-full left-1/2 w-[150px] h-[80px] text-[#A78BFA]" style={{ overflow: 'visible', transform: 'translateX(-5px)' }}>
-                                    <path
-                                        d="M 5 5 Q 30 70 140 70"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2.5"
-                                        strokeDasharray="6 6"
-                                        strokeLinecap="round"
-                                        className="opacity-80"
-                                    />
-                                    <circle cx="140" cy="70" r="4" fill="currentColor" />
-                                </svg>
-                            </div>
-                        </div>
-
-                        {/* Business Tag */}
-                        <div className="absolute top-[250px] left-[2%] lg:bottom-[20%] animate-float-delayed">
-                            <div className="relative group">
-                                <div className="px-8 py-3 bg-[#c084fc] rounded-2xl shadow-lg text-white text-lg font-semibold flex items-center justify-center min-w-[130px] backdrop-blur-md border border-white/30"
-                                    style={{
-                                        background: 'linear-gradient(135deg, rgba(192, 132, 252, 0.9) 0%, rgba(167, 139, 250, 0.9) 100%)',
-                                        boxShadow: '0 8px 32px 0 rgba(168, 85, 247, 0.25)'
-                                    }}>
-                                    Business
-                                </div>
-                                <svg className="absolute top-1/2 left-full w-[100px] h-[5px] text-[#C084FC]" style={{ overflow: 'visible', transform: 'translate(0, -50%)' }}>
-                                    <path
-                                        d="M 5 0 C 40 0 50 40 90 40"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2.5"
-                                        strokeDasharray="6 6"
-                                        strokeLinecap="round"
-                                        className="opacity-80"
-                                    />
-                                    <circle cx="90" cy="40" r="4" fill="currentColor" />
-                                </svg>
-                            </div>
+                <div className="relative w-full min-h-[500px] md:min-h-[720px] mt-8">
+                    <div className={`absolute top-0 right-0 w-[92%] md:w-[70%] z-10 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`} style={{ transitionDelay: "400ms" }}>
+                        <div className="relative rounded-2xl border border-gray-200 bg-white shadow-sm">
+                            <Image
+                                src="/images/escrow.png"
+                                alt="Enterprise Escrow Dashboard"
+                                width={1200}
+                                height={800}
+                                className="relative w-full h-auto rounded-2xl"
+                                priority
+                            />
                         </div>
                     </div>
 
+                    <div className={`absolute top-[220px] md:top-[320px] left-0 w-[92%] md:w-[60%] z-20 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ transitionDelay: "600ms" }}>
+                        <div className="relative rounded-2xl border border-gray-200 bg-white shadow-sm">
+                            <Image
+                                src="/images/escrow2.png"
+                                alt="Transaction Details"
+                                width={1000}
+                                height={700}
+                                className="relative w-full h-auto rounded-2xl"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section >
+        </section>
     );
 };
 

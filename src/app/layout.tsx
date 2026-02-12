@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { Urbanist, Inter, Poppins } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,22 +9,15 @@ import { siteDetails } from '@/data/siteDetails';
 import "./globals.css";
 
 // Font configurations
-const urbanist = Urbanist({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-urbanist',
+  variable: '--font-manrope',
   display: 'swap',
 });
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-poppins',
+  variable: '--font-space',
   display: 'swap',
 });
 
@@ -61,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${urbanist.variable} ${inter.variable} ${poppins.variable} antialiased`}
+        className={`${manrope.variable} ${spaceGrotesk.variable} antialiased`}
       >
         {siteDetails.googleAnalyticsId && <GoogleAnalytics gaId={siteDetails.googleAnalyticsId} />}
         <Header />

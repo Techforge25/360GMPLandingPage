@@ -1,108 +1,168 @@
-import React from 'react';
-import Image from 'next/image';
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
-// Mockup Images (Final Paths)
-const mockupImages = {
-    front: '/images/marketplace-dashboard.png',
-    back: '/images/marketplace-dashboard2.png',
-};
-
-// Feature Card Data (Same)
-const B2BFeatures = [
-    'Bulk buying & selling',
-    'Job posting & hiring',
-    'Escrow-secured payments',
+const opportunities = [
+    {
+        title: "Enterprise Partnerships",
+        description: "Strategic sourcing and procurement with verified global vendors.",
+        features: ["Verified suppliers", "Contract workflows", "Escrow protection"],
+    },
+    {
+        title: "SME Growth Access",
+        description: "Faster onboarding and better market access for growth firms.",
+        features: ["Rapid verification", "Market discovery", "Risk controls"],
+    },
+    {
+        title: "Institutional Programs",
+        description: "Audit-ready execution for institutions and multinationals.",
+        features: ["Compliance trails", "KPI reporting", "Dedicated success"],
+    },
+    {
+        title: "Government Procurement",
+        description: "Transparent vendor management with dispute oversight.",
+        features: ["Vendor validation", "Policy alignment", "Dispute workflows"],
+    },
 ];
-const B2CFeatures = [
-    'Job search & services',
-    'Buy & sell products',
-    'Protected checkout',
-];
-// Feature Card Component (Same)
-const FeatureCard: React.FC<{ title: string, description: string, features: string[] }> = ({ title, description, features }) => (
-    // Note: Reverting gap-3 back as requested in the input
-    <div className="bg-white p-8 rounded-xl shadow-lg ring-1 ring-gray-100 min-h-[250px] flex flex-col">
-        <h3 className="manrope text-xl font-bold text-[#202939] tracking-normal mb-2">{title}</h3>
-        <p className="text-gray-500 text-sm mb-4">{description}</p>
-        <div className="space-y-3 mt-auto">
-            {features.map((feature, index) => (
-                <div key={index} className="flex items-center space-x-2">
-                    <CheckCircleIcon className="w-5 h-5 text-purple-600 flex-shrink-0" />
-                    <span className="text-gray-800 text-sm font-medium">{feature}</span>
-                </div>
-            ))}
-        </div>
-    </div>
-);
 
+const signals = [
+    { label: "Global Reach", value: "180+ markets" },
+    { label: "Verified Entities", value: "14K+" },
+    { label: "Escrow Volume", value: "$4.8B" },
+];
 
 const OpportunitiesSection: React.FC = () => {
-    const MOCKUP_WIDTH = 1000;
-    const MOCKUP_HEIGHT = 800;
+    const sectionRef = useRef<HTMLElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
 
     return (
-        <section className="py-6 md:py-32 w-full relative bg-gray-50 overflow-hidden" id="opportunities">
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between lg:gap-x-20">
-                <div className="lg:w-6/12 xl:w-7/12 relative flex justify-center lg:justify-start min-h-[550px] lg:min-h-[550px] mb-16 lg:mb-0">
-                    <div className="relative w-full max-w-[700px] mt-10 lg:mt-0 h-auto lg:h-[550px]">
-                        <div className="absolute top-0 left-1/2 w-[80%] max-w-[600px] z-10 hidden lg:block lg:[transform:translate(-35%,0%)_rotate(0deg)] lg:origin-top-left lg:top-0">
-                            <Image
-                                src={mockupImages.back}
-                                alt="Marketplace Back Screenshot"
-                                width={MOCKUP_WIDTH}
-                                height={MOCKUP_HEIGHT}
-                                quality={90}
-                                className="w-full h-auto rounded-xl"
-                            />
-                        </div>
-
-                        <div className="relative w-[70%] max-w-[550px] mx-auto lg:absolute lg:top-[50px] lg:left-1/2 lg:[transform:translate(-75%,20%)]">
-                            <Image
-                                src={mockupImages.front}
-                                alt="Marketplace Front Screenshot"
-                                width={MOCKUP_WIDTH}
-                                height={MOCKUP_HEIGHT}
-                                quality={100}
-                                className="w-full h-auto rounded-xl"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="lg:w-6/12 xl:w-5/12 text-center lg:text-left">
-
-                    <p className="text-sm font-semibold text-purple-700 uppercase tracking-wider mb-3 bg-purple-100 w-fit px-3 py-1 rounded-full mx-auto lg:mx-0">
-                        Smooth onboarding
-                    </p>
-
-                    <h2 className="manrope text-4xl md:text-5xl font-bold text-[#202939] tracking-normal mb-8 leading-tight">
-                        One Marketplace. <br />Multiple Opportunities.
-                    </h2>
-
-                    <p className="mx-auto text-[#697586] lg:mx-0 mb-12 text-lg">
-                        A flexible marketplace designed to support both product-based
-                        and service-based transactions. Whether you are buying in
-                        bulk or offering professional services, the platform adapts
-                        to your business needs.
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <FeatureCard
-                            title="B2B Marketplace"
-                            description="Built for businesses that need scale and security."
-                            features={B2BFeatures}
-                        />
-                        <FeatureCard
-                            title="B2C Marketplace"
-                            description="Simple marketplace for everyday users."
-                            features={B2CFeatures}
-                        />
-                    </div>
-                </div>
-
+        <section ref={sectionRef} className="relative py-20 md:py-28 overflow-hidden bg-white" id="opportunities">
+            <div className="absolute inset-0 opacity-25">
+                <div
+                    className="absolute inset-0 bg-[linear-gradient(to_right,rgba(151,71,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(151,71,255,0.1)_1px,transparent_1px)]"
+                    style={{ backgroundSize: "96px 96px" }}
+                ></div>
             </div>
+            <div className="absolute -top-24 right-0 w-[360px] h-[360px] bg-[#9747FF]/10 rounded-full blur-3xl animate-float-slow"></div>
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className={`text-center mb-14 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+                    <p className="text-xs uppercase tracking-[0.3em] text-[#240457] font-semibold">Global Opportunities</p>
+                    <h2 className="text-3xl md:text-5xl font-semibold text-[#240457] mt-4">
+                        Opportunity Engines for Every Segment
+                    </h2>
+                    <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto mt-4">
+                        Distinct tracks for enterprises, SMEs, institutions, and public sector programs - all on one verified platform.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-[0.9fr,1.1fr] gap-10 items-start">
+                    <div className={`rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+                        <p className="text-xs uppercase tracking-[0.3em] text-[#240457]">Opportunity Snapshot</p>
+                        <h3 className="text-2xl font-semibold text-[#240457] mt-4">One dashboard, multiple growth lanes.</h3>
+                        <p className="text-gray-600 mt-3">
+                            Manage procurement, partnerships, and talent sourcing through a unified execution layer.
+                        </p>
+                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            {signals.map((signal) => (
+                                <div key={signal.label} className="rounded-2xl border border-gray-200 bg-[#f9fafb] p-4 text-center">
+                                    <p className="text-xs uppercase tracking-[0.25em] text-[#240457]">{signal.label}</p>
+                                    <p className="text-sm font-semibold text-[#240457] mt-2">{signal.value}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-6 rounded-2xl border border-[#9747FF]/20 bg-[#f7f4ff] p-6">
+                            <p className="text-sm text-gray-600">
+                                Verified access to global supply chains, audit-ready transaction execution, and real-time compliance tracking.
+                            </p>
+                            <div className="mt-4 h-2 rounded-full bg-white">
+                                <div className="h-2 w-3/4 rounded-full bg-gradient-to-r from-[#9747FF] to-[#7a3ff5]"></div>
+                            </div>
+                        </div>
+
+                        <div className="mt-6 grid grid-cols-2 gap-3">
+                            <Image
+                                src="/images/b2b.png"
+                                alt="Opportunity dashboard"
+                                width={320}
+                                height={220}
+                                className="rounded-2xl border border-gray-200 shadow-sm"
+                            />
+                            <Image
+                                src="/images/mockup.png"
+                                alt="Opportunity insights"
+                                width={320}
+                                height={220}
+                                className="rounded-2xl border border-gray-200 shadow-sm"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {opportunities.map((opportunity, index) => (
+                            <div
+                                key={opportunity.title}
+                                className={`rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+                                style={{ transitionDelay: isVisible ? `${index * 100}ms` : "0ms" }}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <p className="text-xs uppercase tracking-[0.25em] text-[#240457]">Track</p>
+                                    <span className="h-2 w-2 rounded-full bg-[#9747FF]"></span>
+                                </div>
+                                <h3 className="text-lg md:text-xl font-semibold text-[#240457] mt-3">
+                                    {opportunity.title}
+                                </h3>
+                                <p className="text-sm text-gray-600 mt-2">{opportunity.description}</p>
+                                <div className="mt-4 flex flex-wrap gap-2">
+                                    {opportunity.features.map((feature) => (
+                                        <span
+                                            key={feature}
+                                            className="text-xs font-semibold px-3 py-1 rounded-full bg-[#9747FF]/10 text-[#240457]"
+                                        >
+                                            {feature}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <style jsx>{`
+                @keyframes float-slow {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-14px); }
+                }
+
+                .animate-float-slow {
+                    animation: float-slow 6s ease-in-out infinite;
+                }
+            `}</style>
         </section>
     );
 };

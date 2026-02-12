@@ -1,29 +1,18 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 
 const heroDetails = {
-    badge: "NOW IN V2.0 ENTERPRISE RELEASE",
-    heading: "Find Verified Businesses Across The Globe",
+    badge: "ENTERPRISE GLOBAL LAUNCH",
+    heading: "Your Gateway to Global Business",
     subheading:
-        "Work with confidence using our escrow-based payment system that protects both parties, ensures transparency, and releases funds only when work is approved.",
-
-    centerImageSrc: "/images/hero-images.png",
-    backgroundImageSrc: "/images/hero-bg.png"
+        "360 Global Marketplace enables businesses, institutions, and entrepreneurs worldwide to connect, partner, and trade across borders - securely, efficiently, and at scale.",
+    centerImageSrc: "/images/hero-web.png",
 };
 
 const ArrowRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        {...props}
-    >
-        <path
-            fillRule="evenodd"
-            d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-            clipRule="evenodd"
-        />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
+        <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
     </svg>
 );
 
@@ -34,73 +23,211 @@ const HeroSection = () => {
         const headerOffset = 84;
         const rect = el.getBoundingClientRect();
         const offsetTop = window.scrollY + rect.top - headerOffset;
-
-        window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth",
-        });
+        window.scrollTo({ top: offsetTop, behavior: "smooth" });
     };
-    const MOCKUP_WIDTH = 1120;
-    const MOCKUP_HEIGHT = 700;
+
+    const particles = useMemo(
+        () =>
+            Array.from({ length: 16 }, (_, i) => {
+                const size = Math.random() * 3 + 2;
+                return {
+                    id: i,
+                    size,
+                    left: Math.random() * 100,
+                    top: Math.random() * 100,
+                    duration: Math.random() * 14 + 12,
+                    delay: Math.random() * 6,
+                };
+            }),
+        []
+    );
 
     return (
-        <section
-            id="home"
-            className="relative pt-24 md:pt-40 pb-0 overflow-hidden min-h-[85vh]"
-        >
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-0 left-0 right-0 h-[65%] lg:h-[75%]">
-                    <Image
-                        src={heroDetails.backgroundImageSrc}
-                        alt="City Skyscraper Background"
-                        layout="fill"
-                        objectFit="cover"
-                        quality={90}
-                        priority
-                        className="opacity-70"
-                    />
-                    <div className="absolute inset-0 bg-black/60"></div>
-                </div>
+        <section id="home" className="relative pt-28 md:pt-40 pb-20 overflow-hidden min-h-screen bg-white">
+            <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f7f4ff] to-white"></div>
+            <div className="absolute -top-40 -right-20 w-[520px] h-[520px] bg-[#9747FF]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-40 -left-20 w-[520px] h-[520px] bg-[#9747FF]/10 rounded-full blur-3xl"></div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-[30%] lg:h-[25%] bg-white">
-                    <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-black/0 to-transparent"></div>
-                </div>
-
+            <div className="absolute inset-0 opacity-20">
+                <div
+                    className="absolute inset-0 animate-grid-drift"
+                    style={{
+                        backgroundImage: "linear-gradient(to right, rgba(151, 71, 255, 0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(151, 71, 255, 0.12) 1px, transparent 1px)",
+                        backgroundSize: "140px 140px",
+                    }}
+                ></div>
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <div className="absolute inset-0 opacity-30">
+                {particles.map((p) => (
+                    <div
+                        key={p.id}
+                        className="absolute rounded-full"
+                        style={{
+                            width: `${p.size}px`,
+                            height: `${p.size}px`,
+                            left: `${p.left}%`,
+                            top: `${p.top}%`,
+                            background: "radial-gradient(circle, rgba(151, 71, 255, 0.45), transparent)",
+                            animation: `float-particle ${p.duration}s ease-in-out ${p.delay}s infinite`,
+                        }}
+                    ></div>
+                ))}
+            </div>
 
-                <div className="inline-flex items-center gap-2 bg-white/10 text-white text-xs font-medium px-3 py-1 rounded-full mb-4 md:mb-6 ring-1 ring-white/50">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-400"></span>
-                    {heroDetails.badge}
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col items-center text-center">
+                    <div
+                        className="inline-flex items-center gap-2 px-6 py-2 rounded-full mb-8 animate-fade-in-up"
+                        style={{
+                            background: "rgba(255, 255, 255, 0.9)",
+                            border: "1px solid rgba(151, 71, 255, 0.2)",
+                            boxShadow: "0 10px 24px rgba(151, 71, 255, 0.12)",
+                            backdropFilter: "blur(10px)",
+                        }}
+                    >
+                        <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-sm"></span>
+                        <span className="text-[#240457] text-xs md:text-sm font-semibold tracking-[0.2em]">{heroDetails.badge}</span>
+                    </div>
+
+                    <h1
+                        className="text-5xl sm:text-6xl lg:text-7xl font-semibold max-w-5xl tracking-tight text-balance leading-tight mb-7 animate-fade-in-up"
+                        style={{
+                            color: "#240457",
+                            animationDelay: "0.2s",
+                        }}
+                    >
+                        {heroDetails.heading}
+                    </h1>
+
+                    <p
+                        className="text-base md:text-lg text-gray-600 max-w-3xl px-2 leading-relaxed mb-10 animate-fade-in-up"
+                        style={{
+                            animationDelay: "0.4s",
+                        }}
+                    >
+                        {heroDetails.subheading}
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-16 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+                        <button
+                            onClick={() => scrollToSection("contact")}
+                            className="group relative inline-flex items-center justify-center gap-2 px-9 py-4 rounded-xl font-semibold text-base transition-all duration-300 transform hover:scale-[1.02] overflow-hidden"
+                            style={{
+                                background: "linear-gradient(135deg, #7a3ff5 0%, #9747FF 100%)",
+                                boxShadow: "0 16px 30px rgba(151, 71, 255, 0.25)",
+                            }}
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                            <span className="relative z-10 text-white">Enter the Global Marketplace</span>
+                            <ArrowRightIcon className="relative z-10 w-5 h-5 text-white transition-transform group-hover:translate-x-1" />
+                        </button>
+                        <button
+                            onClick={() => scrollToSection("platform-overview")}
+                            className="group relative inline-flex items-center justify-center gap-2 px-9 py-4 rounded-xl font-semibold text-base transition-all duration-300 transform hover:scale-[1.02] overflow-hidden bg-white"
+                            style={{
+                                border: "1px solid rgba(36, 4, 87, 0.15)",
+                                boxShadow: "0 12px 24px rgba(15, 15, 25, 0.08)",
+                            }}
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#9747FF]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                            <span className="relative z-10 text-[#240457]">Explore the Platform</span>
+                            <ArrowRightIcon className="relative z-10 w-5 h-5 text-[#240457] transition-transform group-hover:translate-x-1" />
+                        </button>
+                    </div>
                 </div>
 
-                <h1 className="manrope text-4xl sm:text-5xl lg:text-7xl font-bold text-white max-w-4xl tracking-normal text-balance leading-tight">
-                    {heroDetails.heading}
-                </h1>
+                <div className="relative mx-auto max-w-6xl animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
+                    <div className="absolute -inset-8 bg-gradient-to-r from-purple-200/40 via-indigo-200/30 to-purple-200/40 rounded-[40px] blur-3xl opacity-60"></div>
+                    <div
+                        className="relative p-2 rounded-[28px] bg-white"
+                        style={{
+                            border: "1px solid rgba(36, 4, 87, 0.08)",
+                            boxShadow: "0 30px 70px -40px rgba(36, 4, 87, 0.35)",
+                        }}
+                    >
+                        <Image
+                            src={heroDetails.centerImageSrc}
+                            width={1120}
+                            height={700}
+                            quality={100}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1120px"
+                            priority
+                            alt="360 GMP Platform Mockup"
+                            className="rounded-2xl"
+                        />
+                    </div>
 
-                <p className="mt-4 md:mt-6 text-base md:text-lg text-gray-200 max-w-2xl px-2">
-                    {heroDetails.subheading}
-                </p>
+                    <div className="absolute -left-6 top-10 hidden lg:block animate-float-slow">
+                        <div className="bg-white border border-[#9747FF]/15 rounded-2xl p-5 w-52 shadow-lg">
+                            <p className="text-xs uppercase tracking-[0.25em] text-[#240457]">Trade Flow</p>
+                            <p className="text-lg font-semibold text-[#240457] mt-2">$4.8B</p>
+                            <p className="text-xs text-gray-500 mt-1">Secured volume</p>
+                            <div className="mt-4 h-1 w-full rounded-full bg-gray-100">
+                                <div className="h-1 w-3/5 rounded-full bg-gradient-to-r from-[#9747FF] to-[#7a3ff5]"></div>
+                            </div>
+                        </div>
+                    </div>
 
-                <button onClick={() => scrollToSection("contact")} className="mt-6 md:mt-8 inline-flex items-center justify-center gap-2 bg-[#240457] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#6847c9] transition-colors duration-300 transform hover:scale-105">
-                    Get A Quotes
-                    <ArrowRightIcon className="w-5 h-5" />
-                </button>
-
-                <div className="mt-10 md:mt-16 w-full max-w-5xl px-2 lg:px-0">
-                    <Image
-                        src={heroDetails.centerImageSrc}
-                        width={MOCKUP_WIDTH}
-                        height={MOCKUP_HEIGHT}
-                        quality={100}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1120px"
-                        priority={true}
-                        alt="360 GMP Platform Mockup"
-                        className="rounded-xl shadow-2xl shadow-black/30 ring-1 ring-gray-200"
-                    />
+                    <div className="absolute -right-8 bottom-16 hidden lg:block animate-float-slower">
+                        <div className="bg-white border border-[#9747FF]/15 rounded-2xl p-5 w-60 shadow-lg">
+                            <p className="text-xs uppercase tracking-[0.25em] text-[#240457]">Partner Match</p>
+                            <p className="text-sm text-gray-600 mt-2">Verified supplier network</p>
+                            <div className="mt-4 space-y-2">
+                                {Array.from({ length: 3 }).map((_, i) => (
+                                    <div key={i} className="flex items-center gap-2">
+                                        <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
+                                        <span className="text-xs text-gray-600">Tier {i + 1} clearance</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                @keyframes float-particle {
+                    0%, 100% { transform: translate(0, 0); opacity: 0.35; }
+                    50% { transform: translate(16px, -22px); opacity: 0.7; }
+                }
+
+                @keyframes grid-drift {
+                    0% { background-position: 0 0; }
+                    100% { background-position: 140px 140px; }
+                }
+
+                .animate-grid-drift {
+                    animation: grid-drift 48s linear infinite;
+                }
+
+                .animate-fade-in-up {
+                    animation: fadeInUp 1s ease-out both;
+                }
+
+                @keyframes fadeInUp {
+                    from { opacity: 0; transform: translateY(24px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+
+                @keyframes float-slow {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-14px); }
+                }
+
+                @keyframes float-slower {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-18px); }
+                }
+
+                .animate-float-slow {
+                    animation: float-slow 6s ease-in-out infinite;
+                }
+
+                .animate-float-slower {
+                    animation: float-slower 7s ease-in-out infinite;
+                }
+            `}</style>
         </section>
     );
 };

@@ -1,92 +1,144 @@
-import React from 'react';
-import Image from 'next/image';
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 
-// Features data 
-const features = [
-    'Create Business Profiles',
-    'Post Jobs & Hire Faster',
-    'Sell Products & Services',
-    'Escrow-Based Payments',
-    'Dispute Management System',
-    'Performance Analytics',
-    'Team & Role Management',
+const problems = [
+    {
+        title: "Trust gaps",
+        problem: "Unverified partners increase risk and slow procurement cycles.",
+        solution: "Verified enterprise profiles with audit-ready documentation.",
+    },
+    {
+        title: "Workflow silos",
+        problem: "Sourcing, contracts, payments, and talent live in silos.",
+        solution: "Unified operating layer across trade and execution.",
+    },
+    {
+        title: "Escrow uncertainty",
+        problem: "Traditional payments create exposure and delays.",
+        solution: "Milestone escrow with automated release logic.",
+    },
+    {
+        title: "Compliance drag",
+        problem: "Multi-jurisdiction rules slow deals and add risk.",
+        solution: "Embedded compliance checks aligned to standards.",
+    },
 ];
 
-// Mockup images
-const mockupImages = {
-    main: '/images/marketplace3.png',
-    overlay: '/images/marketplace2.png',
-};
-
-// Reusable Feature Item Component (Content changes here)
-const FeatureItem: React.FC<{ feature: string }> = ({ feature }) => (
-    <div className="flex items-start text-left">
-        <CheckCircleIcon className="w-5 h-5 text-purple-600 flex-shrink-0 mt-1" />
-        <span className="ml-3 text-gray-800 font-medium whitespace-nowrap">
-            {feature}
-        </span>
-    </div>
-);
-
+const extraSignals = [
+    "Partner discovery in days, not months",
+    "Dispute resolution with evidence workflows",
+    "Institutional reporting by default",
+];
 
 const BusinessSection: React.FC = () => {
-    const half = Math.ceil(features.length / 2);
-    const leftFeatures = features.slice(0, half);
-    const rightFeatures = features.slice(half);
+    const sectionRef = useRef<HTMLElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
 
-    // const MOCKUP_WIDTH = 900;
-    // const MOCKUP_HEIGHT = 750;
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
 
     return (
-        <section className="py-6 md:py-12 relative bg-white overflow-hidden" id="marketplace">
-            <div className="w-full max-w-[90%] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-between lg:gap-x-20">
+        <section ref={sectionRef} className="relative py-20 md:py-24 overflow-hidden bg-[#f9fafb]" id="business">
+            <div className="absolute -top-24 left-0 w-[420px] h-[420px] bg-[#9747FF]/10 rounded-full blur-3xl animate-float-slow"></div>
+            <div className="absolute -bottom-24 right-0 w-[420px] h-[420px] bg-[#9747FF]/10 rounded-full blur-3xl animate-float-slower"></div>
+            <div className="absolute inset-0 opacity-30">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(151,71,255,0.15)_1px,transparent_0)]" style={{ backgroundSize: "48px 48px" }}></div>
+            </div>
 
-                {/* Left Side: Text and Features (Sizing adjusted for better contrast) */}
-                <div className="lg:w-1/2 text-center lg:text-left mb-16 lg:mb-0">
-                    <p className="text-sm font-semibold text-purple-700 uppercase tracking-wider mb-3 bg-purple-100 w-fit px-3 py-1 rounded-full mx-auto lg:mx-0">
-                        Smooth onboarding
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+                    <p className="text-xs uppercase tracking-[0.3em] text-[#240457]">Problems We Solve</p>
+                    <h2 className="text-3xl md:text-5xl font-semibold text-[#240457] mt-4">Global trade, simplified.</h2>
+                    <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto mt-4">
+                        Four high-impact friction points we remove so institutions can move faster and safer.
                     </p>
-                    <h2 className="manrope text-4xl md:text-5xl font-extrabold text-[#202939] tracking-tight mb-6 leading-tight">
-                        Buy & Sell Smarter in One Unified Marketplace
-                    </h2>
-                    <p className="text-gray-600 max-w-lg lg:max-w-none mx-auto lg:mx-0 mb-10 text-lg">
-                        Connect directly with verified buyers and sellers on a powerful
-                        marketplace built for both B2B and B2C transactions. From bulk
-                        products to professional services, everything happens in one
-                        secure, transparent, and scalable platform.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 max-w-lg mx-auto lg:mx-0">
-                        <div className="flex flex-col space-y-4 items-start">
-                            {leftFeatures.map((feature, index) => (
-                                <FeatureItem key={`l-${index}`} feature={feature} />
-                            ))}
-                        </div>
-                        <div className="flex flex-col space-y-4 items-start">
-                            {rightFeatures.map((feature, index) => (
-                                <FeatureItem key={`r-${index}`} feature={feature} />
-                            ))}
-                        </div>
-                    </div>
                 </div>
 
-                <div className="lg:w-1/2 relative flex justify-center lg:justify-end min-h-[400px] lg:min-h-[700px] mt-10 lg:mt-0">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr,0.9fr] gap-10 items-start">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {problems.map((item, index) => (
+                            <div
+                                key={item.title}
+                                className={`rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+                                style={{ transitionDelay: isVisible ? `${index * 90}ms` : "0ms" }}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <p className="text-xs uppercase tracking-[0.25em] text-[#240457]">Challenge</p>
+                                    <span className="h-2 w-2 rounded-full bg-[#9747FF]"></span>
+                                </div>
+                                <h3 className="text-lg font-semibold text-[#240457] mt-3">{item.title}</h3>
+                                <p className="text-sm text-gray-600 mt-2">{item.problem}</p>
+                                <div className="mt-4 pt-4 border-t border-gray-100">
+                                    <p className="text-xs uppercase tracking-[0.25em] text-[#240457]">Solution</p>
+                                    <p className="text-sm text-gray-600 mt-2">{item.solution}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
 
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] -z-10 opacity-40"></div>
-
-                    <div className="relative w-full">
-                        <Image
-                            src={mockupImages.main}
-                            alt="Marketplace Main Screenshot"
-                            width={1100}
-                            height={900}
-                            quality={100}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1100px"
-                            className="w-full h-auto object-contain drop-shadow-2xl"
-                        />
+                    <div className={`rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "400ms" }}>
+                        <p className="text-xs uppercase tracking-[0.3em] text-[#240457]">Signal Deck</p>
+                        <h3 className="text-2xl font-semibold text-[#240457] mt-4">Operational clarity at scale.</h3>
+                        <p className="text-gray-600 mt-3">
+                            Verified partners, escrow protection, and compliance checks become default - not exceptions.
+                        </p>
+                        <div className="mt-6 space-y-3">
+                            {extraSignals.map((item) => (
+                                <div key={item} className="flex items-center gap-2">
+                                    <span className="h-2 w-2 rounded-full bg-[#9747FF]"></span>
+                                    <span className="text-sm text-gray-600">{item}</span>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-8 rounded-2xl border border-gray-200 bg-[#f9fafb] p-4">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs uppercase tracking-[0.25em] text-[#240457]">Risk Score</span>
+                                <span className="text-sm font-semibold text-[#240457]">Low</span>
+                            </div>
+                            <div className="mt-3 h-2 rounded-full bg-white">
+                                <div className="h-2 w-4/5 rounded-full bg-gradient-to-r from-[#9747FF] to-[#7a3ff5]"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                @keyframes float-slow {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-14px); }
+                }
+                @keyframes float-slower {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-18px); }
+                }
+                .animate-float-slow {
+                    animation: float-slow 6s ease-in-out infinite;
+                }
+                .animate-float-slower {
+                    animation: float-slower 7s ease-in-out infinite;
+                }
+            `}</style>
         </section>
     );
 };

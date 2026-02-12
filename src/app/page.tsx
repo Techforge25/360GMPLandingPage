@@ -8,22 +8,35 @@ import BusinessSection from "@/components/BusinessSection";
 import RoleSwitchSection from "@/components/RoleSwitchSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import FaqsSection from "@/components/FaqsSection";
+import GlobalPositioningSection from "@/components/GlobalPositioningSection";
+import PlatformOverviewSection from "@/components/PlatformOverviewSection";
+import TrustSecuritySection from "@/components/TrustSecuritySection";
+import MissionVisionSection from "@/components/MissionVisionSection";
+import ValuesFrameworkSection from "@/components/ValuesFrameworkSection";
+import CorporatePurposeSection from "@/components/CorporatePurposeSection";
+import FinalCTASection from "@/components/FinalCTASection";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
+      <GlobalPositioningSection />
+      <PlatformOverviewSection />
+      <TrustSecuritySection />
       <BusinessSection />
       <OpportunitiesSection />
-      <HiringSection />
       <HowItWorksSection />
-      <RoleSwitchSection />
+      <MissionVisionSection />
+      <ValuesFrameworkSection />
+      <CorporatePurposeSection />
       <BenefitsSection />
       <PartnershipSection />
       <ContactSection />
+      <FinalCTASection />
       <FaqsSection />
     </>
   );
 };
 
 export default HomePage;
+
