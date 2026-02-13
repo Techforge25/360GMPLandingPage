@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const heroDetails = {
     badge: "ENTERPRISE GLOBAL LAUNCH",
-    heading: "Your Gateway to Global Business",
+    heading: "The Trusted Digital Infrastructure for Global Trade and Partnerships",
     subheading:
-        "360 Global Marketplace enables businesses, institutions, and entrepreneurs worldwide to connect, partner, and trade across borders - securely, efficiently, and at scale.",
+        "360 Global Marketplace connects businesses, institutions, and professionals worldwide - enabling secure partnerships, cross-border trade, and economic growth on one unified platform.",
     centerImageSrc: "/images/hero-web.png",
 };
 
