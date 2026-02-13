@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const ArrowRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
@@ -89,6 +90,16 @@ const FinalCTASection = () => {
                             <ArrowRightIcon className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                         </button>
                     </div>
+
+                    {/* <div className="mt-12 max-w-5xl mx-auto rounded-2xl border border-gray-200 bg-white p-2 shadow-sm">
+                        <Image
+                            src="/images/profile-images.png"
+                            alt="Global platform preview"
+                            width={1200}
+                            height={720}
+                            className="rounded-xl w-full h-auto"
+                        />
+                    </div> */}
                 </div>
             </div>
 

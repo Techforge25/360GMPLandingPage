@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
 const contactInfo = [
@@ -53,28 +54,39 @@ const ContactSection: React.FC = () => {
                     </p>
                 </header>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 items-start">
-                    <div className={`lg:col-span-1 rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-                        <h3 className="text-lg font-semibold text-[#240457] mb-6">Direct Access</h3>
-                        <div className="space-y-5">
-                            {contactInfo.map((item, index) => {
-                                const Icon = item.icon;
-                                return (
-                                    <div key={index} className="flex items-start gap-3">
-                                        <div className="w-10 h-10 bg-[#9747FF]/10 border border-[#9747FF]/20 rounded-lg flex items-center justify-center">
-                                            <Icon className="w-5 h-5 text-[#9747FF]" />
-                                        </div>
-                                        <div>
-                                            <p className="text-xs uppercase tracking-[0.2em] text-[#240457]">{item.title}</p>
-                                            <p className="text-sm text-gray-600 mt-1 leading-relaxed">{item.detail}</p>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                <div className="grid grid-cols-1 lg:grid-cols-[0.9fr,1.1fr] gap-8 lg:gap-10 items-start">
+                    <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "200ms" }}>
+                        <div className="relative rounded-2xl border border-gray-200 bg-white p-2 shadow-sm overflow-hidden">
+                            <Image
+                                src="/images/contactus.png"
+                                alt="Contact and support"
+                                width={1200}
+                                height={720}
+                                className="rounded-xl w-full h-auto"
+                            />
+                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] max-w-md rounded-2xl border border-white/70 bg-gradient-to-br from-white/80 via-white/60 to-[#e9ddff]/60 p-6 shadow-[0_25px_70px_-25px_rgba(36,4,87,0.45)] backdrop-blur-2xl ring-1 ring-white/50">
+                                <h3 className="text-lg font-semibold text-[#240457] mb-4">Direct Access</h3>
+                                <div className="space-y-4">
+                                    {contactInfo.map((item, index) => {
+                                        const Icon = item.icon;
+                                        return (
+                                            <div key={index} className="flex items-start gap-3">
+                                                <div className="w-8 h-8 bg-[#9747FF]/10 border border-[#9747FF]/20 rounded-lg flex items-center justify-center">
+                                                    <Icon className="w-4 h-4 text-[#9747FF]" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-[11px] uppercase tracking-[0.2em] text-[#240457]">{item.title}</p>
+                                                    <p className="text-xs text-gray-600 mt-1 leading-relaxed">{item.detail}</p>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <form className={`lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-10 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
+                    <form className={`bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-10 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label className="block text-sm font-semibold text-gray-900 mb-2">First Name</label>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const faqsData = [
@@ -120,6 +121,18 @@ const FaqsSection: React.FC = () => {
                     <p className={`text-gray-600 text-base md:text-lg max-w-3xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "200ms" }}>
                         Learn more about platform capabilities, compliance, and enterprise onboarding.
                     </p>
+                </div>
+
+                <div className={`mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "200ms" }}>
+                    {/* <div className="max-w-5xl mx-auto rounded-2xl border border-gray-200 bg-white p-2 shadow-sm">
+                        <Image
+                            src="/images/marketplace-dashboard2.png"
+                            alt="FAQ platform view"
+                            width={1200}
+                            height={720}
+                            className="rounded-xl w-full h-auto"
+                        />
+                    </div> */}
                 </div>
 
                 <div className="max-w-4xl mx-auto">

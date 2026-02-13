@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const missionVisionContent = {
     mission: {
@@ -47,31 +48,33 @@ const MissionVisionSection = () => {
                     <h2 className="text-3xl md:text-5xl font-semibold text-[#240457] mt-4">Mission and Vision</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                     <div
-                        className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
+                        className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
                     >
-                        <div className="h-full bg-white rounded-2xl p-8 md:p-10 border border-gray-200 shadow-sm">
+                        <div className="group h-full bg-white rounded-2xl p-8 md:p-10 border border-gray-200 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
                             <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-[#240457]">
                                 {missionVisionContent.mission.title}
                             </h3>
                             <p className="text-base md:text-lg leading-relaxed text-gray-600">
                                 {missionVisionContent.mission.content}
                             </p>
+                            <div className="mt-6 h-1 w-0 group-hover:w-14 bg-gradient-to-r from-[#9747FF] to-[#7a3ff5] transition-all duration-500"></div>
                         </div>
                     </div>
 
                     <div
-                        className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
-                        style={{ transitionDelay: "200ms" }}
+                        className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+                        style={{ transitionDelay: "150ms" }}
                     >
-                        <div className="h-full bg-white rounded-2xl p-8 md:p-10 border border-gray-200 shadow-sm">
+                        <div className="group h-full bg-white rounded-2xl p-8 md:p-10 border border-gray-200 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
                             <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-[#240457]">
                                 {missionVisionContent.vision.title}
                             </h3>
                             <p className="text-base md:text-lg leading-relaxed text-gray-600">
                                 {missionVisionContent.vision.content}
                             </p>
+                            <div className="mt-6 h-1 w-0 group-hover:w-14 bg-gradient-to-r from-[#9747FF] to-[#7a3ff5] transition-all duration-500"></div>
                         </div>
                     </div>
                 </div>

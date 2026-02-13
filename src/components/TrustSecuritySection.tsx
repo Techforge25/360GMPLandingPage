@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const securityFeatures = [
     {
@@ -105,26 +106,17 @@ const TrustSecuritySection: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-[1.2fr,1fr] gap-10 items-center">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {securityFeatures.map((feature, index) => (
-                            <div
-                                key={feature.id}
-                                className={`group relative rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-500 ${
-                                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                                }`}
-                                style={{ transitionDelay: isVisible ? `${index * 80}ms` : "0ms" }}
-                            >
-                            <div className="h-11 w-11 rounded-xl bg-[#9747FF]/10 border border-[#9747FF]/20 flex items-center justify-center mb-4 text-[#9747FF]">
-                                {feature.icon}
-                            </div>
-                                <h3 className="text-lg font-semibold text-[#240457] mb-2">{feature.title}</h3>
-                                <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] gap-10 items-center">
+                    <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm lg:order-1">
+                        <div className="max-w-md mx-auto rounded-2xl border border-gray-200 bg-white p-2 shadow-sm mb-6">
+                            <Image
+                                src="/images/escrow.png"
+                                alt="Security operations overview"
+                                width={900}
+                                height={640}
+                                className="rounded-xl w-full h-auto"
+                            />
+                        </div>
                         <p className="text-xs uppercase tracking-[0.3em] text-[#240457]">Security Snapshot</p>
                         <h3 className="text-2xl font-semibold text-[#240457] mt-4">Verified, monitored, and compliance-ready.</h3>
                         <p className="text-gray-600 mt-3">
@@ -145,6 +137,24 @@ const TrustSecuritySection: React.FC = () => {
                         <div className="mt-8 h-2 rounded-full bg-gray-100 overflow-hidden">
                             <div className="h-2 w-4/5 rounded-full bg-gradient-to-r from-[#9747FF] to-[#7a3ff5]"></div>
                         </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:order-2">
+                        {securityFeatures.map((feature, index) => (
+                            <div
+                                key={feature.id}
+                                className={`group relative rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-500 ${
+                                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                                }`}
+                                style={{ transitionDelay: isVisible ? `${index * 80}ms` : "0ms" }}
+                            >
+                            <div className="h-11 w-11 rounded-xl bg-[#9747FF]/10 border border-[#9747FF]/20 flex items-center justify-center mb-4 text-[#9747FF]">
+                                {feature.icon}
+                            </div>
+                                <h3 className="text-lg font-semibold text-[#240457] mb-2">{feature.title}</h3>
+                                <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

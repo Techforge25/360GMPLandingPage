@@ -31,6 +31,10 @@ export const PartnershipSection: React.FC = () => {
 
     return (
         <section ref={sectionRef} className="relative w-full overflow-hidden py-20 md:py-28 bg-white">
+            <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] bg-gradient-to-br from-purple-200/60 to-blue-200/60 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] bg-gradient-to-br from-blue-200/60 to-purple-200/60 rounded-full blur-3xl"></div>
+            </div>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center max-w-4xl mx-auto mb-16">
@@ -82,8 +86,67 @@ export const PartnershipSection: React.FC = () => {
                             />
                         </div>
                     </div>
+
+                    <div className="hidden md:block absolute inset-0 pointer-events-none z-30">
+                        <div className={`absolute top-[120px] left-[18%] transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`} style={{ transitionDelay: "800ms" }}>
+                            <div className="relative animate-float-slow">
+                                <div className="px-7 py-3 rounded-2xl shadow-lg text-[#240457] text-base font-semibold flex items-center justify-center min-w-[140px] bg-white/90 border border-[#9747FF]/30 backdrop-blur">
+                                    Enterprise
+                                </div>
+                                <svg className="absolute top-full left-1/2 w-[150px] h-[80px] text-[#9747FF]" style={{ overflow: "visible", transform: "translateX(-5px)" }}>
+                                    <path
+                                        d="M 5 5 Q 30 70 140 70"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeDasharray="8 6"
+                                        strokeLinecap="round"
+                                        className="opacity-70"
+                                    />
+                                    <circle cx="140" cy="70" r="4" fill="currentColor" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div className={`absolute top-[250px] left-[2%] transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`} style={{ transitionDelay: "1000ms" }}>
+                            <div className="relative animate-float-delayed">
+                                <div className="px-7 py-3 rounded-2xl shadow-lg text-[#240457] text-base font-semibold flex items-center justify-center min-w-[140px] bg-white/90 border border-[#9747FF]/30 backdrop-blur">
+                                    Vendor
+                                </div>
+                                <svg className="absolute top-1/2 left-full w-[100px] h-[5px] text-[#9747FF]" style={{ overflow: "visible", transform: "translate(0, -50%)" }}>
+                                    <path
+                                        d="M 5 0 C 40 0 50 40 90 40"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeDasharray="8 6"
+                                        strokeLinecap="round"
+                                        className="opacity-70"
+                                    />
+                                    <circle cx="90" cy="40" r="4" fill="currentColor" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                @keyframes float-slow {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-12px); }
+                }
+                @keyframes float-delayed {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+                .animate-float-slow {
+                    animation: float-slow 4s ease-in-out infinite;
+                }
+                .animate-float-delayed {
+                    animation: float-delayed 5s ease-in-out infinite 1s;
+                }
+            `}</style>
         </section>
     );
 };

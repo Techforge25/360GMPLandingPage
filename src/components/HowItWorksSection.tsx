@@ -68,6 +68,13 @@ const HowItWorksSection: React.FC = () => {
 
     return (
         <section ref={sectionRef} className="relative py-20 md:py-28 overflow-hidden bg-[#f8fafc]" id="how-it-works">
+            <div className="absolute inset-0 opacity-30">
+                <div
+                    className="absolute inset-0 bg-[linear-gradient(to_right,rgba(151,71,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(151,71,255,0.1)_1px,transparent_1px)]"
+                    style={{ backgroundSize: "120px 120px" }}
+                ></div>
+            </div>
+            <div className="absolute -top-20 left-10 w-[360px] h-[360px] bg-[#9747FF]/10 rounded-full blur-3xl animate-float-slow"></div>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
@@ -84,7 +91,7 @@ const HowItWorksSection: React.FC = () => {
                     {steps.map((step, index) => (
                         <div
                             key={step.number}
-                            className={`relative rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-700 hover:shadow-md ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                            className={`group relative rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-700 hover:-translate-y-2 hover:shadow-lg ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                             style={{ transitionDelay: isVisible ? `${index * 120}ms` : "0ms" }}
                         >
                             <div className="absolute -top-4 -right-4 h-10 w-10 rounded-full bg-gradient-to-br from-[#7a3ff5] to-[#9747FF] text-white flex items-center justify-center text-sm font-semibold shadow-md">
@@ -96,6 +103,7 @@ const HowItWorksSection: React.FC = () => {
                             <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                                 {step.description}
                             </p>
+                            <div className="mt-6 h-1 w-0 group-hover:w-12 bg-gradient-to-r from-[#9747FF] to-[#7a3ff5] transition-all duration-500"></div>
                         </div>
                     ))}
                 </div>
@@ -122,6 +130,16 @@ const HowItWorksSection: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                @keyframes float-slow {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-14px); }
+                }
+                .animate-float-slow {
+                    animation: float-slow 6s ease-in-out infinite;
+                }
+            `}</style>
         </section>
     );
 };

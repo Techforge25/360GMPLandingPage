@@ -79,7 +79,7 @@ const OpportunitiesSection: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-[0.9fr,1.1fr] gap-10 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-[0.9fr,1.1fr] gap-10 items-center">
                     <div className={`rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                         <p className="text-xs uppercase tracking-[0.3em] text-[#240457]">Opportunity Snapshot</p>
                         <h3 className="text-2xl font-semibold text-[#240457] mt-4">One dashboard, multiple growth lanes.</h3>
@@ -106,14 +106,14 @@ const OpportunitiesSection: React.FC = () => {
 
                         <div className="mt-6 grid grid-cols-2 gap-3">
                             <Image
-                                src="/images/b2b.png"
+                                src="/images/cart.png"
                                 alt="Opportunity dashboard"
                                 width={320}
                                 height={220}
                                 className="rounded-2xl border border-gray-200 shadow-sm"
                             />
                             <Image
-                                src="/images/mockup.png"
+                                src="/images/order.png"
                                 alt="Opportunity insights"
                                 width={320}
                                 height={220}

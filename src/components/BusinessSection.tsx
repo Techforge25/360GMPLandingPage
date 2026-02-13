@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const problems = [
     {
@@ -74,7 +75,7 @@ const BusinessSection: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr,0.9fr] gap-10 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {problems.map((item, index) => (
                             <div
@@ -97,6 +98,15 @@ const BusinessSection: React.FC = () => {
                     </div>
 
                     <div className={`rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "400ms" }}>
+                        <div className="max-w-md mx-auto rounded-2xl border border-gray-200 bg-white p-2 shadow-sm mb-6">
+                            <Image
+                                src="/images/business.png"
+                                alt="Enterprise trade insights"
+                                width={900}
+                                height={600}
+                                className="rounded-xl w-full h-auto"
+                            />
+                        </div>
                         <p className="text-xs uppercase tracking-[0.3em] text-[#240457]">Signal Deck</p>
                         <h3 className="text-2xl font-semibold text-[#240457] mt-4">Operational clarity at scale.</h3>
                         <p className="text-gray-600 mt-3">

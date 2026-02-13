@@ -31,7 +31,7 @@ const CorporatePurposeSection = () => {
     return (
         <section ref={sectionRef} className="py-20 md:py-28 bg-white">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className={`grid grid-cols-1 lg:grid-cols-[1.1fr,0.9fr] gap-10 items-start transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-[25px] items-center justify-center transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
                     <div>
                         <div className="flex items-center gap-4 mb-8">
                             <div className="h-1 w-16 bg-gradient-to-r from-[#9747FF] to-[#7a3ff5]"></div>
@@ -62,7 +62,7 @@ const CorporatePurposeSection = () => {
                         </div>
                     </div>
 
-                    <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+                    <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm max-w-3xl mx-auto mt-6 lg:mt-10">
                         <p className="text-xs uppercase tracking-[0.3em] text-[#240457]">Impact Snapshot</p>
                         <h3 className="text-2xl font-semibold text-[#240457] mt-4">Building the trusted layer for global trade.</h3>
                         <p className="text-gray-600 mt-3">

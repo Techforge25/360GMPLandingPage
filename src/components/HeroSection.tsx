@@ -177,7 +177,7 @@ const HeroSection = () => {
                                 {Array.from({ length: 3 }).map((_, i) => (
                                     <div key={i} className="flex items-center gap-2">
                                         <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-                                        <span className="text-xs text-gray-600">Tier {i + 1} clearance</span>
+                                        <span className="text-xs text-gray-600">{`Tier ${i + 1} clearance`}</span>
                                     </div>
                                 ))}
                             </div>

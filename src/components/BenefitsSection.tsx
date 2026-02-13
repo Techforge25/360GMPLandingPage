@@ -6,26 +6,60 @@ const advantages = [
     {
         title: "Global Market Access",
         description: "Reach verified partners in key trade corridors with institutional-grade controls.",
+        icon: (
+            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <circle cx="12" cy="12" r="8" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M12 4c2.5 2.8 2.5 12 0 16M12 4c-2.5 2.8-2.5 12 0 16" />
+            </svg>
+        ),
     },
     {
         title: "Risk Mitigation",
         description: "Escrow protection, compliance automation, and structured arbitration.",
+        icon: (
+            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l8 4v6c0 4.42-3.13 8.67-8 9.95C7.13 21.67 4 17.42 4 13V7l8-4z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+            </svg>
+        ),
     },
     {
         title: "Operational Efficiency",
         description: "Unified workflows for sourcing, contracting, and payment execution.",
+        icon: (
+            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h10" />
+            </svg>
+        ),
     },
     {
         title: "Talent Excellence",
         description: "Recruit and manage international teams with verified credentials.",
+        icon: (
+            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11a4 4 0 10-8 0 4 4 0 008 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 20a8 8 0 0116 0" />
+            </svg>
+        ),
     },
     {
         title: "Data Intelligence",
         description: "Real-time analytics, transaction insights, and performance reporting.",
+        icon: (
+            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 19h16M7 16v-6M12 16V8M17 16v-4" />
+            </svg>
+        ),
     },
     {
         title: "Institutional Credibility",
         description: "Audit-ready activity logs and enterprise-grade governance.",
+        icon: (
+            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 4h8l4 4v12H6z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 4v4h4" />
+            </svg>
+        ),
     },
 ];
 
@@ -77,8 +111,8 @@ const BenefitsSection: React.FC = () => {
                             className={`group rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-700 hover:shadow-md ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                             style={{ transitionDelay: isVisible ? `${index * 120}ms` : "0ms" }}
                         >
-                            <div className="h-12 w-12 rounded-xl bg-[#9747FF]/10 border border-[#9747FF]/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <div className="h-2.5 w-2.5 rounded-full bg-[#9747FF]"></div>
+                            <div className="h-12 w-12 rounded-xl bg-[#9747FF]/10 border border-[#9747FF]/20 flex items-center justify-center mb-4 text-[#9747FF] group-hover:scale-110 transition-transform">
+                                {advantage.icon}
                             </div>
                             <h3 className="text-lg md:text-xl font-semibold text-[#240457] mb-2">{advantage.title}</h3>
                             <p className="text-sm md:text-base text-gray-600 leading-relaxed">{advantage.description}</p>
@@ -95,7 +129,7 @@ const BenefitsSection: React.FC = () => {
                             alt="Enterprise analytics"
                             width={900}
                             height={600}
-                            className="relative rounded-2xl shadow-lg"
+                            className="relative rounded-2xl"
                         />
                     </div>
                     <div className="relative">
@@ -105,7 +139,7 @@ const BenefitsSection: React.FC = () => {
                             alt="Partner insights"
                             width={900}
                             height={600}
-                            className="relative rounded-2xl shadow-lg"
+                            className="relative"
                         />
                     </div>
                 </div>
