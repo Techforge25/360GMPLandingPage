@@ -60,7 +60,7 @@ const Header: React.FC = () => {
               aria-label="Go to top"
             >
               <Image
-                src="/images/logo.png"
+                src="/images/Logo.png"
                 alt="360 Global Marketplace"
                 width={120}
                 height={45}
