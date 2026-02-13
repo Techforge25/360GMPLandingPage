@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 const ArrowRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
@@ -37,13 +36,14 @@ const FinalCTASection = () => {
             { threshold: 0.2 }
         );
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
+        const current = sectionRef.current;
+        if (current) {
+            observer.observe(current);
         }
 
         return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
+            if (current) {
+                observer.unobserve(current);
             }
         };
     }, []);

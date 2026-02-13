@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 const missionVisionContent = {
     mission: {
@@ -29,13 +28,14 @@ const MissionVisionSection = () => {
             { threshold: 0.2 }
         );
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
+        const current = sectionRef.current;
+        if (current) {
+            observer.observe(current);
         }
 
         return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
+            if (current) {
+                observer.unobserve(current);
             }
         };
     }, []);
