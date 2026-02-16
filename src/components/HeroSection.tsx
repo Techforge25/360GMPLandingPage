@@ -4,9 +4,10 @@ import Image from "next/image";
 
 const heroDetails = {
     badge: "ENTERPRISE GLOBAL LAUNCH",
-    heading: "The Trusted Digital Infrastructure for Global Trade and Partnerships",
+    heading: "The Infrastructure for Global Trade, Strategic Partnerships, and Cross-Border Growth",
     subheading:
-        "360 Global Marketplace connects businesses, institutions, and professionals worldwide - enabling secure partnerships, cross-border trade, and economic growth on one unified platform.",
+        "360 Global Marketplace connects businesses, institutions, and governments worldwide - enabling secure transactions, strategic alliances, and economic expansion on one unified platform.",
+    supporting: "Built for global commerce. Designed for institutional scale. Trusted for cross-border growth.",
     centerImageSrc: "/images/hero-web.png",
 };
 
@@ -90,24 +91,32 @@ const HeroSection = () => {
                         <span className="text-[#240457] text-xs md:text-sm font-semibold tracking-[0.2em]">{heroDetails.badge}</span>
                     </div>
 
-                    <h1
-                        className="text-5xl sm:text-6xl lg:text-7xl font-semibold max-w-5xl tracking-tight text-balance leading-tight mb-7 animate-fade-in-up"
-                        style={{
-                            color: "#240457",
-                            animationDelay: "0.2s",
-                        }}
-                    >
-                        {heroDetails.heading}
-                    </h1>
+                <div
+                    className="inline-flex items-center gap-3 rounded-full border border-[#9747FF]/20 bg-white/80 px-5 py-2 text-sm md:text-base text-[#240457] shadow-sm backdrop-blur animate-fade-in-up"
+                    style={{ animationDelay: "0.5s" }}
+                >
+                    <span className="h-2 w-2 rounded-full bg-[#9747FF]"></span>
+                    <span>{heroDetails.supporting}</span>
+                </div>
 
-                    <p
-                        className="text-base md:text-lg text-gray-600 max-w-3xl px-2 leading-relaxed mb-10 animate-fade-in-up"
-                        style={{
-                            animationDelay: "0.4s",
-                        }}
-                    >
-                        {heroDetails.subheading}
-                    </p>
+                <h1
+                    className="text-5xl sm:text-6xl lg:text-7xl font-semibold max-w-5xl tracking-tight text-balance leading-tight mb-7 mt-6 animate-fade-in-up"
+                    style={{
+                        color: "#240457",
+                        animationDelay: "0.2s",
+                    }}
+                >
+                    {heroDetails.heading}
+                </h1>
+
+                <p
+                    className="text-base md:text-lg text-gray-600 max-w-3xl px-2 leading-relaxed mb-10 animate-fade-in-up"
+                    style={{
+                        animationDelay: "0.4s",
+                    }}
+                >
+                    {heroDetails.subheading}
+                </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-16 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
                         <button
