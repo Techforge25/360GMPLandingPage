@@ -1,169 +1,76 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
-const contactInfo = [
-    { icon: PhoneIcon, title: "Enterprise Inquiries", detail: "+1 (800) 360-GMP1" },
-    { icon: EnvelopeIcon, title: "Email", detail: "enterprise@360gmp.com" },
-    { icon: MapPinIcon, title: "Global Headquarters", detail: "70 Washington Square South, New York, NY 10012, United States" },
-];
-
-const trustBadges = ["Secure communication", "Response within 24 hours", "Global support coverage"];
-
-const ContactSection: React.FC = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsVisible(true);
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        const current = sectionRef.current;
-        if (current) {
-            observer.observe(current);
-        }
-
-        return () => {
-            if (current) {
-                observer.unobserve(current);
-            }
-        };
-    }, []);
-
-    return (
-        <section ref={sectionRef} className="relative py-20 md:py-28 overflow-hidden bg-[#f9fafb]" id="contact">
-
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <header className="text-center mb-14">
-                    <p className={`text-xs font-semibold text-[#240457] uppercase tracking-[0.3em] mb-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-                        Get Started
-                    </p>
-                    <h2 className={`text-3xl md:text-5xl font-semibold text-[#240457] tracking-tight mb-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "100ms" }}>
-                        Connect With Our Enterprise Team
-                    </h2>
-                    <p className={`text-gray-600 text-base md:text-lg max-w-3xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "200ms" }}>
-                        Discuss platform integration, global procurement workflows, and institutional partnerships.
-                    </p>
-                </header>
-
-                <div className="grid grid-cols-1 lg:grid-cols-[0.9fr,1.1fr] gap-8 lg:gap-10 items-start">
-                    <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "200ms" }}>
-                        <div className="relative rounded-2xl border border-gray-200 bg-white p-2 shadow-sm overflow-hidden">
-                            <Image
-                                src="/images/contactus.png"
-                                alt="Contact and support"
-                                width={1200}
-                                height={720}
-                                className="rounded-xl w-full h-auto"
-                            />
-                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] max-w-md rounded-2xl border border-white/70 bg-gradient-to-br from-white/80 via-white/60 to-[#e9ddff]/60 p-6 shadow-[0_25px_70px_-25px_rgba(36,4,87,0.45)] backdrop-blur-2xl ring-1 ring-white/50">
-                                <h3 className="text-lg font-semibold text-[#240457] mb-4">Direct Access</h3>
-                                <div className="space-y-4">
-                                    {contactInfo.map((item, index) => {
-                                        const Icon = item.icon;
-                                        return (
-                                            <div key={index} className="flex items-start gap-3">
-                                                <div className="w-8 h-8 bg-[#9747FF]/10 border border-[#9747FF]/20 rounded-lg flex items-center justify-center">
-                                                    <Icon className="w-4 h-4 text-[#9747FF]" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-[11px] uppercase tracking-[0.2em] text-[#240457]">{item.title}</p>
-                                                    <p className="text-xs text-gray-600 mt-1 leading-relaxed">{item.detail}</p>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form className={`bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-10 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-900 mb-2">First Name</label>
-                                <input
-                                    type="text"
-                                    placeholder="John"
-                                    className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#9747FF] focus:border-[#9747FF] focus:outline-none transition-all duration-300 text-base placeholder:text-gray-400"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-900 mb-2">Last Name</label>
-                                <input
-                                    type="text"
-                                    placeholder="Doe"
-                                    className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#9747FF] focus:border-[#9747FF] focus:outline-none transition-all duration-300 text-base placeholder:text-gray-400"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-900 mb-2">Business Email</label>
-                                <input
-                                    type="email"
-                                    placeholder="contact@enterprise.com"
-                                    className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#9747FF] focus:border-[#9747FF] focus:outline-none transition-all duration-300 text-base placeholder:text-gray-400"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-900 mb-2">Phone Number</label>
-                                <input
-                                    type="tel"
-                                    placeholder="+1 (800) 000-0000"
-                                    className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#9747FF] focus:border-[#9747FF] focus:outline-none transition-all duration-300 text-base placeholder:text-gray-400"
-                                />
-                            </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-semibold text-gray-900 mb-2">Company Name</label>
-                                <input
-                                    type="text"
-                                    placeholder="Your Enterprise"
-                                    className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#9747FF] focus:border-[#9747FF] focus:outline-none transition-all duration-300 text-base placeholder:text-gray-400"
-                                />
-                            </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-semibold text-gray-900 mb-2">Tell us about your requirements</label>
-                                <textarea
-                                    rows={5}
-                                    placeholder="Describe your global trade or procurement needs."
-                                    className="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#9747FF] focus:border-[#9747FF] focus:outline-none transition-all duration-300 text-base resize-none placeholder:text-gray-400"
-                                />
-                            </div>
-
-                            <div className="md:col-span-2 flex flex-wrap gap-2">
-                                {trustBadges.map((badge) => (
-                                    <span key={badge} className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#9747FF]/10 text-[#240457]">
-                                        {badge}
-                                    </span>
-                                ))}
-                            </div>
-
-                            <div className="md:col-span-2 pt-2">
-                                <button
-                                    type="submit"
-                                    className="group relative w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#7a3ff5] to-[#9747FF] text-white font-semibold py-4 rounded-xl hover:shadow-md transition-all duration-300 text-base overflow-hidden"
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                                    <span className="relative z-10">Request Enterprise Access</span>
-                                    <svg className="relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+export function ContactSection() {
+  return (
+    <section id="contact" data-reveal className="w-full scroll-mt-24 bg-white px-4 py-14 sm:px-10 sm:py-[100px] lg:px-[72px]">
+      <div className="mx-auto flex w-full max-w-[1296px] flex-col gap-10 sm:gap-[72px] lg:h-[823px] lg:flex-row lg:items-start">
+        <div className="flex flex-1 flex-col gap-8 sm:gap-[52px] p-0 lg:p-8" data-reveal-item>
+          <div className="w-full max-w-[525px]">
+            <div className="inline-flex rounded-[24px] bg-[linear-gradient(164deg,rgba(184,255,186,0.63)_10%,rgba(200,255,223,0.63)_80%)] px-[22px] py-1">
+              <span className="text-[16px] font-semibold leading-6 text-[#023014]">Contact</span>
             </div>
-        </section>
-    );
-};
+
+            <h2 className="mt-[18px] text-[30px] font-bold capitalize leading-[38px] text-[#303231] sm:text-[42px] sm:leading-[50px]">
+              Let&apos;s talk about your <span className="text-[#06923e]">Golf Gaming Needs! We would love to hear from you!</span>
+            </h2>
+
+            <p className="mt-5 text-[16px] capitalize leading-[24px] text-[#697586]">
+              Share a few details and we&apos;ll get back with a tailored demo and rollout plan.
+            </p>
+          </div>
+
+          <div className="relative h-[200px] w-full overflow-hidden rounded-[14px] bg-[#075428] px-6 py-6 sm:h-[230px] sm:px-[34px] sm:py-[30px]">
+            <div className="relative z-10">
+              <p className="text-[16px] font-medium leading-7 text-white sm:text-[18px] sm:leading-8">Quick response</p>
+              <p className="mt-2 text-[40px] leading-[46px] text-[#e8f2ec] sm:mt-3 sm:text-[56px] sm:leading-[64px]">Within 24 hours</p>
+              <p className="mt-3 text-[16px] leading-6 text-[#cecece]">We&apos;ll review and reply fast.</p>
+            </div>
+
+            <div className="pointer-events-none absolute -right-[56px] -top-[112px] h-[260px] w-[260px] rounded-full bg-[#003919]/55" />
+            <div className="pointer-events-none absolute -bottom-[164px] right-[-16px] h-[300px] w-[360px] rounded-full bg-[#0a8d43]/45" />
+          </div>
+        </div>
+
+        <form
+          className="relative flex flex-1 flex-col gap-4 rounded-[22px] bg-[#123c20] p-5 sm:p-8 lg:p-[72px]"
+          data-reveal-item
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <div className="pointer-events-none absolute left-[58%] top-[34%] h-[417px] w-[417px] rounded-full bg-[radial-gradient(circle,rgba(23,170,80,0.42)_0%,rgba(23,170,80,0)_74%)]" />
+          <div className="pointer-events-none absolute -right-20 -top-20 h-[260px] w-[260px] rounded-full bg-[#0f7a3d]/30" />
+
+          <label className="relative z-10 flex flex-col gap-3">
+            <span className="text-[16px] font-semibold capitalize leading-6 tracking-[-0.08px] text-[#e0e0e0]">First Name</span>
+            <input className="h-[52px] rounded-[12px] bg-white px-3 text-[16px] text-[#adb1b8] shadow-[0_8px_24px_rgba(0,0,0,0.1)] outline-none" defaultValue="John" />
+          </label>
+
+          <label className="relative z-10 flex flex-col gap-3">
+            <span className="text-[16px] font-semibold capitalize leading-6 tracking-[-0.08px] text-[#e0e0e0]">Email</span>
+            <input className="h-[52px] rounded-[12px] bg-white px-3 text-[16px] text-[#768299] shadow-[0_8px_24px_rgba(0,0,0,0.1)] outline-none" defaultValue="Info@Gmail.Com" />
+          </label>
+
+          <label className="relative z-10 flex flex-col gap-3">
+            <span className="text-[16px] font-semibold capitalize leading-6 tracking-[-0.08px] text-[#e0e0e0]">Club Name</span>
+            <input className="h-[52px] rounded-[12px] bg-white px-3 text-[16px] text-[#768299] shadow-[0_8px_24px_rgba(0,0,0,0.1)] outline-none" defaultValue="Info@Gmail.Com" />
+          </label>
+
+          <label className="relative z-10 flex flex-col gap-3">
+            <span className="text-[16px] font-semibold capitalize leading-6 tracking-[-0.08px] text-[#e0e0e0]">Message</span>
+            <textarea className="h-[131px] resize-none rounded-[12px] bg-white px-3 py-4 text-[16px] capitalize text-[#768299] shadow-[0_8px_24px_rgba(0,0,0,0.1)] outline-none" defaultValue="Tell us about you need" />
+          </label>
+
+          <div className="relative z-20 pt-2">
+            <button
+              type="submit"
+              className="block h-[54px] w-full rounded-[12px] border border-[#0a5f2c] bg-[#14a44d] px-6 text-[16px] font-semibold text-white shadow-[0_12px_26px_rgba(0,0,0,0.28)] transition hover:bg-[#0f8f43]"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}
 
 export default ContactSection;

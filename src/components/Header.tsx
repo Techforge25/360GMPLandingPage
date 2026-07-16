@@ -64,9 +64,9 @@ const Header: React.FC = () => {
                 alt="360 Global Marketplace"
                 width={120}
                 height={45}
-                quality={100}
+                // quality={100}
                 priority
-                className="h-auto w-auto"
+                className="h-[47px] w-auto"
                 style={{
                   filter: "none",
                 }}
