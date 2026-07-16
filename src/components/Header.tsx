@@ -62,7 +62,7 @@ const Header: React.FC = () => {
               <Image
                 src="/images/Logo.png"
                 alt="360 Global Marketplace"
-                width={60}
+                width={80}
                 height={60}
                 // quality={100}
                 priority
@@ -157,8 +157,8 @@ const Header: React.FC = () => {
               <Image
                 src="/images/logo.png"
                 alt="360 Global Marketplace"
-                width={120}
-                height={36}
+                width={80}
+                height={60}
                 quality={100}
                 className="h-auto w-auto"
               />
