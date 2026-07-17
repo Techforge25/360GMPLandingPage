@@ -1,7 +1,6 @@
 import OpportunitiesSection from "@/components/OpportunitiesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import PartnershipSection from "@/components/PartnershipSection";
-import ContactSection from "@/components/ContactSection";
 import HeroSection from "@/components/HeroSection";
 import BusinessSection from "@/components/BusinessSection";
 import BenefitsSection from "@/components/BenefitsSection";
@@ -29,7 +28,6 @@ const HomePage: React.FC = () => {
       <CorporatePurposeSection />
       <BenefitsSection />
       <PartnershipSection />
-      <ContactSection />
       <FinalCTASection />
       <FaqsSection />
     </>
